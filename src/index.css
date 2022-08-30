@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Roboto:ital@1&display=swap');
+:root{
+  --backgroundDarkColor: hsl(207, 26%, 17%);
+  --backgroundLightColor: hsl(180, 20%, 96%);
+  --backgroundDarkSidebar: hsl(208, 26%, 23%);
+  --lightModeText: hsl(200, 15%, 8%);
+  --white:hsl(0, 0%, 100%);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Inter', sans-serif;
+}
+.dark-mode{
+  background-color:var(--backgroundDarkColor);
+  color: var(--white);
+}
+.light-mode{
+  background-color: var(--backgroundLightColor);
+  color: var(--backgroundDarkColor);
+}
+.dark-modeForBtnMode{
+  background-color: #F1C40F ;
+}
+.light-modeForBtnMode{
+  background-color: var(--backgroundDarkColor);
+}
+.dark-modeForBtnAdd{
+  background-color: rgba(131, 131, 155, 0.3) ;
+  color: var(--white);
+}
+.light-modeForBtnAdd{
+  background-color: rgb(240, 255, 255,0.8);
+  color:var(--lightModeText) ;
+}
+.dark-modeSidebar{
+  background-color: var(--backgroundDarkSidebar);
+  color: var(--white);
+}
+.light-modeSidebar{
+  background-color: var(--white);
+  color:var(--lightModeText);
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+}
+.header h2,button{
+  margin-left: 4em;
+  cursor: pointer;
+}
+.header button{
+  margin-right: 5em;
+  width: 2.5em;
+  height: 2.5em;
+  border: none;
+  border-radius: 5px;
+}
+.btn{
+  cursor: pointer;
+}
+.btn:hover{
+  opacity: 0.8;
+}
+.header button:active{
+  box-shadow: 0 0 50px rgb(5, 248, 78);
+}
+.main{
+  background-image: url('./components/img/main-background.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 25em;
+  position: relative;
+}
+.main-elements{
+  padding-top: 8em;
+  padding-left: 10em;
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+}
+.main-elements h1{
+  font-size: 3rem;
+  margin-left: -.1em;
+}
+.main-elements h2{
+  margin-top: -7px;
+  font-size: 1.5rem;
+}
+.main-elements button{
+  width: 7.5em;
+  height: 2.4em;
+  margin-left: -0em;
+  margin-top: 2.3em;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+.sidebar-homepage{
+  position: absolute;
+  width: 30rem;
+  height: 138.8%;
+  right: 0;
+  top:0 ;
+}
+.sidebar-homepage-elements{
+  width: 27rem;
+  height: 100%;
+  margin: 0  auto;
+}
+.sidebar-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar-selects{
+  margin-top: 2em;
+}
+.sidebar-selects p{font-weight: 600;}
+.sidebar-select{
+  margin-top: 1em;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+.sidebar-select:focus{
+  border: 3px solid rgb(7, 200, 248);
+}
+.select-city{
+  margin-top: 1em;
+}
+.sidebar-select {
+  width: 26rem;
+  height: 2.2rem;
+}
+.sidebar-footer{
+  position: absolute;
+  top: 31rem;
+  right: 2rem;
+}
+.sidebar-footer button{
+  height: 2em;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.btn-img{
+  padding-right: 5px;
+}
+.btn-save{
+  background-color: rgb(0, 255, 0);
+}
+
+
