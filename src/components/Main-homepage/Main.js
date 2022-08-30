@@ -1,26 +1,28 @@
-import React, {useState} from "react";
+import React from "react";
 import SideBar from "./SideBar";
+import { showSideBar } from "../../redux/actions";
 import { connect } from "react-redux";
 
 
 function Main(props){
     const theme = props.isToggle ? 'dark' : 'light'
-    const [showSideBar, setShowSideBar] = useState(false)
+    
     return(
         <main className={"main"}>
             <div className={"main-elements"}>
                 <h1>Tracked Cities</h1>
                 <h2>All the cities you are saved to see the weather!</h2>
-                <button onClick={() => setShowSideBar(true)} className={`${theme}-modeForBtnAdd btn`} >+ Add City</button>
+                <button onClick={() => props.showSideBar()} className={`${theme}-modeForBtnAdd btn`} >+ Add City</button>
             </div>
-            {showSideBar && <SideBar/>}
+            {props.isShow && <SideBar/>}
         </main>
     )
 }
 const mapStateToProps = state => {
     return {
-        isToggle:state.isToggle
+        isToggle:state.isToggle,
+        isShow:state.isShow
     }
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps, {showSideBar})(Main)
