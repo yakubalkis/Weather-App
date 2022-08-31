@@ -49,13 +49,16 @@ body{
   justify-content: space-between;
   height: 70px;
   align-items: center;
+  position: sticky;
+  top:0;
+  z-index: 5;
 }
 .header h2,button{
   margin-left: 4em;
   cursor: pointer;
 }
 .header button{
-  margin-right: 5em;
+  margin-right: 2.5em;
   width: 2.5em;
   height: 2.5em;
   border: none;
@@ -75,7 +78,6 @@ body{
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   height: 25em;
   position: relative;
 }
@@ -111,6 +113,7 @@ body{
   height: 138.8%;
   right: 0;
   top:0 ;
+  z-index: 2;
 }
 .sidebar-homepage-elements{
   width: 27rem;
@@ -161,6 +164,75 @@ body{
 }
 .btn-save{
   background-color: rgb(0, 255, 0);
+}
+.carts{
+  width: 70%;
+  border: 1px solid red;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto auto auto;
+  margin-top: 2rem;
+}
+.cart{
+  width: 100%;
+  height: 17em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  background-image: url('./components/img/cart-background.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  color: var(--white);
+  transition: all 0.5s;
+}
+.cart:hover{
+  background-image: url('./components/img/cart-background-hover.jpeg');
+}
+.cart-day{
+  font-weight: 800;
+  font-size: .8rem;
+  padding-top: 15px;
+}
+.cart-day-number{
+  transform: translateY(-10px);
+}
+.cart-city,.temp{
+  font-weight: 600;
+}
+.cart-city-country{
+  display: inline-block;
+  height: 1.1rem;
+  min-width: 1.8rem;
+  border-radius: 9px;
+  background-color: rgb(250, 176, 37);
+  font-size: 0.7rem;
+  font-weight: 800;
+  transform: translate(4px,-7px);
+}
+.cart-weather-state{
+  letter-spacing: .5px;
+  transform: translateY(-13px);
+}
+.cart-weather-info-div{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1px;
+  height: 3.5rem;
+  width: 90%;
+  border-radius: 7px;
+  background: rgba(255, 253, 253, 0.3);
+  margin-bottom: 18px;
+}
+.cart-weather-temp-info{
+  font-size: 0.9em;
+ 
+  margin-bottom: 3px;
 }
 
 
