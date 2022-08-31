@@ -6,10 +6,18 @@ export const toggle = () => dispatch => {
 export const showSideBar = () => dispatch => {
     dispatch({type: 'SHOW_SIDEBAR'})
 }
+export const hideSideBar = () => dispatch => {
+    dispatch({type: 'HIDE_SIDEBAR'})
+}
 export const getCountries = () => dispatch => {
     axios
     .get("https://countriesnow.space/api/v0.1/countries")
     .then(response => dispatch({type: 'GET_COUNTRIES_SUCCESS', payload:response.data}))
+}
+export const getPositionOfCity = (city) => dispatch => {
+    axios
+    .get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=504192fcd7519634ad8589d58391b7c4`)
+    .then(response => dispatch({type:'GET_POSITION_OF_CITY', payload:response.data}) )
 }
 export const getCountry = (country) => dispatch => {
     dispatch({type: 'GET_COUNTRY', payload:country})
@@ -17,3 +25,6 @@ export const getCountry = (country) => dispatch => {
 export const getCity = (city) => dispatch => {
     dispatch({type: 'GET_CITY', payload:city})
 } 
+export const addCity = (city) => dispatch => {
+    dispatch({type:'ADD_CITY', payload:city})
+}
