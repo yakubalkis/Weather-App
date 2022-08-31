@@ -1,12 +1,12 @@
 import React,{ useEffect, useState} from "react";
+import { connect } from "react-redux";
+import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
 import cancelIconDark from '../img/cancelDark.png'
 import cancelIconLight from '../img/cancelLight.png'
 import saveIcon from '../img/icon-save.png'
-import { showSideBar, getCountries, getCountry } from "../../redux/actions";
 import OptionCountry from "./optionCountry";
-import { connect } from "react-redux";
 import OptionCity from "./optionCity";
 
 
@@ -14,6 +14,7 @@ import OptionCity from "./optionCity";
 function SideBar(props){
     const [isDisableSelectCountry, setIsDisableSelectCountry ] = useState(true)
     const [isDisableSelectCity, setIsDisableSelectCity] = useState(true)
+    const [isClickedBtnSave, setIsClickedBtnSave] = useState(false)
     const theme = props.isToggle ? 'dark':'light'
     const xIcon = props.isToggle ? xIconDark : xIconLight
     const cancelIcon = props.isToggle ? cancelIconDark : cancelIconLight
@@ -22,7 +23,16 @@ function SideBar(props){
        props.getCountries()
     },[])
 
-    console.log(props.countries)
+    useEffect(()  => {
+        if(props.selectedCities.length <= 1){
+            props.getPositionOfCity(props.selectedCities[0])
+        }
+        else{
+            props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
+        }
+    },[isClickedBtnSave])
+
+    
 
     function handleSelectCountry(e){
         if(e.target.value !== 'no select'){
@@ -38,26 +48,34 @@ function SideBar(props){
     function handleSelectCity(e){
         if(e.target.value !== 'no select'){
             setIsDisableSelectCity(false)
+            props.getCity(e.target.value)
         }
         else{setIsDisableSelectCity(true)}
     }
-  
+    
+    function handleSaveButton(){
+        props.addCity(props.selectedCity)
+        setIsClickedBtnSave(prevState => !prevState)
+    }
+   
     const optionsCountries = props.countries.data?.map((item, i) => {
-        return (<OptionCountry  key={i} country={item.country} />)
+        return (<OptionCountry  key={i} country={item.country} />) 
     })
     
     
-    const optionsCities = props.country.length > 0 ? props.countries.data?.filter((country => country.country === props.country))[0].cities.map((city, i) => {
-        return (<OptionCity city={city} />)
+    const optionsCities = props.selectedCountry.length > 0 ? props.countries.data?.filter((country => country.country === props.selectedCountry))[0].cities.map((city, i) => {
+        return (<OptionCity  key={i} city={city} />)
     }) : false
    
-    console.log(optionsCities)
+    console.log(props.selectedCity)
+    console.log(props.selectedCities)
+    console.log(props.infoOfSelectedCities)
     return(
         <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}}>
             <div className="sidebar-homepage-elements">
                 <div className="sidebar-header">
                     <h3>Add City</h3>
-                    <img alt="" onClick={() => props.showSideBar()} className="btn" src={xIcon} />
+                    <img alt="" onClick={() => props.hideSideBar()} className="btn" src={xIcon} />
                 </div>
                 <div className="sidebar-selects" >
                 <p>Country</p>
@@ -67,7 +85,7 @@ function SideBar(props){
                         
                     </select>
                     <p className="select-city">City</p>
-                    <select onClick={(e) => handleSelectCity(e)} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
+                    <select onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
                         <option value='no select' >Select a city</option>
                         {optionsCities}
                     </select>
@@ -75,7 +93,7 @@ function SideBar(props){
                 <div className="sidebar-footer" >
                     <button 
                         className={`btn ${theme}-mode`}
-                        onClick={() => props.showSideBar()}
+                        onClick={() => props.hideSideBar()}
                             >
                             <img alt="" className="btn-img" src={cancelIcon} />
                         Cancel
@@ -84,7 +102,8 @@ function SideBar(props){
                     <button 
                         className={`btn btn-save`} 
                         disabled={isDisableSelectCity}
-                        onClick={() => console.log('hello')} >
+                        onClick={() => {handleSaveButton()}}
+                         >
                             <img alt="" disabled={isDisableSelectCity} className="btn-img" src={saveIcon} />
                         Save
                     </button>
@@ -94,11 +113,14 @@ function SideBar(props){
     )
 }
 const mapStateToProps = state =>{
-    return {
+    return { 
         isToggle:state.isToggle,
         isShow:state.isShow,
         countries:state.countries,
-        country:state.country
+        selectedCountry:state.selectedCountry,
+        selectedCity:state.selectedCity,
+        selectedCities:state.selectedCities,
+        infoOfSelectedCities:state.infoOfSelectedCities
     }
 }
-export default connect(mapStateToProps, {showSideBar, getCountries, getCountry})(SideBar)
+export default connect(mapStateToProps, {showSideBar,hideSideBar, getCountries, getCountry, getCity, addCity, getPositionOfCity})(SideBar)
