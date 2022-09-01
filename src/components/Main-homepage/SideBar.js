@@ -1,6 +1,6 @@
 import React,{ useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
-import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity,setIsClickedBtnSave } from "../../redux/actions";
+import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
 import cancelIconDark from '../img/cancelDark.png'
@@ -26,16 +26,9 @@ function SideBar(props){
         })
     })
 
-
     useEffect(() => {
        props.getCountries()
     },[])
-
-    useEffect(()  => {
-        if(props.selectedCities.length > 1 && props.selectedCities[props.selectedCities.length-2]!== props.selectedCities[props.selectedCities.length-1]){
-            props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
-        }
-    },[props.isClickedBtnSave])
 
     
 
@@ -59,8 +52,9 @@ function SideBar(props){
     }
     
     function handleSaveButton(){
-            props.addCity(props.selectedCity)
-            props.setIsClickedBtnSave()
+            if(!props.selectedCities.includes(props.selectedCity)){
+                props.addCity(props.selectedCity)
+            }
     }
    
     const optionsCountries = props.countries.data?.map((item, i) => {
@@ -72,9 +66,7 @@ function SideBar(props){
         return (<OptionCity  key={i} city={city} />)
     }) : false
    
-    console.log(props.selectedCity)
-    console.log(props.selectedCities)
-    console.log(props.infoOfSelectedCities)
+  
     return(
         <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}} ref={sidebarRef}>
             <div className="sidebar-homepage-elements">
@@ -126,7 +118,7 @@ const mapStateToProps = state =>{
         selectedCity:state.selectedCity,
         selectedCities:state.selectedCities,
         infoOfSelectedCities:state.infoOfSelectedCities,
-        isClickedBtnSave:state.isClickedBtnSave
+        
     }
 }
-export default connect(mapStateToProps, {showSideBar,hideSideBar, getCountries, getCountry, getCity, addCity, getPositionOfCity,setIsClickedBtnSave})(SideBar)
+export default connect(mapStateToProps, {showSideBar,hideSideBar, getCountries, getCountry, getCity, addCity, getPositionOfCity})(SideBar)
