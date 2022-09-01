@@ -4,11 +4,10 @@ import { getWeatherForecast,getPositionOfCity } from "../../redux/actions";
 import Cart from "./Cart";
 
 function Carts(props){
- 
+
 useEffect(() => {
     if(props.selectedCities.length <=1){
         props.getPositionOfCity(props.selectedCities[0])
-        console.log('HElloo')
     }else {
         props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
     }
@@ -25,19 +24,22 @@ useEffect(() => {
     }
 },[props.isTakenPositionFromApi])
 
-// useEffect(() =>  {
-//     const lat = props.infoOfSelectedCities[0]?.lat
-//     const lon = props.infoOfSelectedCities[0]?.lon
-//     if(lat  !== undefined && lon!== undefined){
-//         props.getWeatherForecast(props.infoOfSelectedCities[0]?.lat,props.infoOfSelectedCities[0]?.lon)
-//     }
-     
-// },[props.isClickedBtnSave]) 
+const weatherCarts = props.allWeatherForecasts.map((city,i) => {
+    return <Cart 
+                 key={i}
+                 city={props.selectedCities[i]}
+                 country={city.sys.country}
+                 weatherState={city.weather[0].description}
+                 currentTemp={city.main.temp}
+                 feelsLike={city.main.feels_like}
+                 humidity={city.main.humidity}
+            />
+})
 console.log(props.allWeatherForecasts)
 
 return( 
     <div className="carts">
-        <Cart />
+        {weatherCarts}
     </div>
 )
 }
