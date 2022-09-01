@@ -1,4 +1,4 @@
-import React,{ useEffect, useState} from "react";
+import React,{ useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
 import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity,setIsClickedBtnSave } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
@@ -12,18 +12,27 @@ import OptionCity from "./optionCity";
 
 
 function SideBar(props){
+    const sidebarRef = useRef()
     const [isDisableSelectCountry, setIsDisableSelectCountry ] = useState(true)
     const [isDisableSelectCity, setIsDisableSelectCity] = useState(true)
     const theme = props.isToggle ? 'dark':'light'
     const xIcon = props.isToggle ? xIconDark : xIconLight
     const cancelIcon = props.isToggle ? cancelIconDark : cancelIconLight
 
+    useEffect(()  => {
+        document.addEventListener("mousedown", (event) =>  {
+            if(!sidebarRef.current?.contains(event.target))
+                props.hideSideBar()
+        })
+    })
+
+
     useEffect(() => {
        props.getCountries()
     },[])
 
     useEffect(()  => {
-        if(props.selectedCities.length > 1){
+        if(props.selectedCities.length > 1 && props.selectedCities[props.selectedCities.length-2]!== props.selectedCities[props.selectedCities.length-1]){
             props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
         }
     },[props.isClickedBtnSave])
@@ -67,7 +76,7 @@ function SideBar(props){
     console.log(props.selectedCities)
     console.log(props.infoOfSelectedCities)
     return(
-        <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}}>
+        <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}} ref={sidebarRef}>
             <div className="sidebar-homepage-elements">
                 <div className="sidebar-header">
                     <h3>Add City</h3>
@@ -75,16 +84,16 @@ function SideBar(props){
                 </div>
                 <div className="sidebar-selects" >
                 <p>Country</p>
-                    <select onClick={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
+                    {props.isShow && <select onClick={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
                         <option value='no select' >Select a country</option>
                         {optionsCountries}
                         
-                    </select>
+                    </select>}
                     <p className="select-city">City</p>
-                    <select onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
+                    {props.isShow && <select onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
                         <option value='no select' >Select a city</option>
                         {optionsCities}
-                    </select>
+                    </select>}
                 </div>
                 <div className="sidebar-footer" >
                     <button 
