@@ -44,6 +44,9 @@ body{
   background-color: var(--white);
   color:var(--lightModeText);
 }
+.container{
+    min-height: 100vh !important;
+}
 .header{
   display: flex;
   justify-content: space-between;
@@ -58,7 +61,7 @@ body{
   cursor: pointer;
 }
 .header button{
-  margin-right: 2.5em;
+  margin-right: 2.1em;
   width: 2.5em;
   height: 2.5em;
   border: none;
@@ -110,10 +113,10 @@ body{
 .sidebar-homepage{
   position: absolute;
   width: 30rem;
-  height: 138.8%;
+  height: 90%;
   right: 0;
-  top:0 ;
-  z-index: 2;
+  top:70px;
+  z-index: 10;
 }
 .sidebar-homepage-elements{
   width: 27rem;
@@ -147,7 +150,7 @@ body{
 }
 .sidebar-footer{
   position: absolute;
-  top: 31rem;
+  bottom: 1rem;
   right: 2rem;
 }
 .sidebar-footer button{
@@ -155,7 +158,7 @@ body{
   font-size: 20px;
   border: none;
   border-radius: 5px;
-  margin-left: 30px;
+  right: 0;
   padding-right: 10px;
   padding-left: 10px;
 }
@@ -167,7 +170,6 @@ body{
 }
 .carts{
   width: 70%;
-  border: 1px solid red;
   margin: 0 auto;
   display: grid;
   gap: 10px;
@@ -231,7 +233,6 @@ body{
 }
 .cart-weather-temp-info{
   font-size: 0.9em;
- 
   margin-bottom: 3px;
 }
 
