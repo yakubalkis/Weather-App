@@ -8,7 +8,8 @@ const INITIAL_STATE = {
     infoOfSelectedCities:[],
     allWeatherForecasts:[],
     isTakenPositionFromApi:false,
-    removedCities:[]
+    removedCitiesId:[],
+    removedCitiesNames:[],
 }
 
 export const reducer = ( state = INITIAL_STATE, action ) => {
@@ -19,7 +20,6 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isShow:true}
         case 'HIDE_SIDEBAR':
             return {...state, isShow:false}
-     
         case 'GET_COUNTRIES_SUCCESS':
             return {...state, countries:action.payload}
         case 'GET_POSITION_OF_CITY_START':
@@ -34,8 +34,12 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, selectedCity:action.payload}
         case 'ADD_CITY':
             return {...state, selectedCities:[...state.selectedCities, action.payload]}
-        case 'REMOVE_CITY':
-            return {...state, removedCities:[...state.removedCities, action.payload] }
+        case 'GET_REMOVED_CITY_ID':
+            return {...state, removedCitiesId:[...state.removedCitiesId, action.payload]}
+        case 'GET_REMOVED_CITY_NAME':
+            return {...state, removedCitiesNames:[...state.removedCitiesNames, action.payload ]}
+        case 'FILTER_REMOVED_CITIES_ARRAY':
+            return {...state, removedCitiesNames:state.removedCitiesNames.filter(city => city !== action.payload)}
         default:
             return state
     }
