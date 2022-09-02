@@ -15,9 +15,10 @@ export const getCountries = () => dispatch => {
     .then(response => dispatch({type: 'GET_COUNTRIES_SUCCESS', payload:response.data}))
 }
 export const getPositionOfCity = (city) => dispatch => {
+    dispatch({type:'GET_POSITION_OF_CITY_START'})
     axios
     .get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=504192fcd7519634ad8589d58391b7c4`)
-    .then(response => dispatch({type:'GET_POSITION_OF_CITY', payload:response.data}) )
+    .then(response => dispatch({type:'GET_POSITION_OF_CITY', payload:response.data[0]}) )
 }
 export const getCountry = (country) => dispatch => {
     dispatch({type: 'GET_COUNTRY', payload:country})
@@ -27,4 +28,12 @@ export const getCity = (city) => dispatch => {
 } 
 export const addCity = (city) => dispatch => {
     dispatch({type:'ADD_CITY', payload:city})
+}
+export const getWeatherForecast = (lat,lon)  => dispatch => {
+    axios
+    .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=504192fcd7519634ad8589d58391b7c4`)
+    .then(response => dispatch({type:'GET_WEATHER_FORECAST', payload:response.data}))
+}
+export const removeCity = (city) => dispatch => {
+    dispatch({type: 'REMOVE_CITY', payload:city})
 }
