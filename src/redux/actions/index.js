@@ -34,6 +34,13 @@ export const getWeatherForecast = (lat,lon)  => dispatch => {
     .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=504192fcd7519634ad8589d58391b7c4`)
     .then(response => dispatch({type:'GET_WEATHER_FORECAST', payload:response.data}))
 }
-export const removeCity = (city) => dispatch => {
-    dispatch({type: 'REMOVE_CITY', payload:city})
+export const getRemovedCityId = (cityID) => dispatch => {
+    dispatch({type: 'GET_REMOVED_CITY_ID', payload:cityID})
 }
+export const getRemovedCityName = (cityName) => dispatch => {
+    dispatch({type: 'GET_REMOVED_CITY_NAME', payload:cityName})
+}
+export const filterRemovedCitiesArray = (city) => dispatch => {
+    dispatch({type: 'FILTER_REMOVED_CITIES_ARRAY', payload:city})
+}
+
