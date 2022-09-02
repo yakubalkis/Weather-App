@@ -1,6 +1,6 @@
 import React,{ useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
-import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity } from "../../redux/actions";
+import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
 import cancelIconDark from '../img/cancelDark.png'
@@ -52,7 +52,8 @@ function SideBar(props){
     }
     
     function handleSaveButton(){
-            if(!props.selectedCities.includes(props.selectedCity)){
+         if(!props.selectedCities.includes(props.selectedCity)){
+                props.setIsSituationDeletingCity()
                 props.addCity(props.selectedCity)
             }
     }
@@ -68,7 +69,7 @@ function SideBar(props){
    
   
     return(
-        <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}} ref={sidebarRef}>
+        <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}}  ref={sidebarRef}>
             <div className="sidebar-homepage-elements">
                 <div className="sidebar-header">
                     <h3>Add City</h3>
@@ -118,7 +119,16 @@ const mapStateToProps = state =>{
         selectedCity:state.selectedCity,
         selectedCities:state.selectedCities,
         infoOfSelectedCities:state.infoOfSelectedCities,
-        
+        removedCitiesNames:state.removedCitiesNames
     }
 }
-export default connect(mapStateToProps, {showSideBar,hideSideBar, getCountries, getCountry, getCity, addCity, getPositionOfCity})(SideBar)
+export default connect(mapStateToProps, 
+                        {showSideBar,
+                        hideSideBar, 
+                        getCountries, 
+                        getCountry, 
+                        getCity, 
+                        addCity, 
+                        getPositionOfCity,
+                        setIsSituationDeletingCity
+                       })(SideBar)
