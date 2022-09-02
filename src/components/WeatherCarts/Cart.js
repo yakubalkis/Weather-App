@@ -1,16 +1,13 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import CartMenu from './CartMenu'
 import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
-import iconMenu from '../img/icon-menu.png'
+//import iconMenu from '../img/icon-menu.png'
 
 
 function Cart(props){
 
-    const [isShowMenu,setIsShowMenu] = useState(false)
-    const style = {
-        display: isShowMenu ? 'block':'none'
-    }
-    const theme = props.isToggle ? 'dark' : 'light'
+
 
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] 
     const date = new Date()
@@ -39,11 +36,7 @@ function Cart(props){
                     <p className='temp'>{props.humidity}%</p>
                 </div>
            </div>
-           <img alt='' src={iconMenu} className='icon-menu' onClick={() => {setIsShowMenu(prevState => !prevState)}} />
-           <div className='cart-menu'  >
-             <button style={style} className={`cart-menu-button button-top ${theme}-modeSidebar`}>View Weather</button>
-             <button style={style} className={`cart-menu-button button-bottom ${theme}-modeSidebar`}>Remove City</button>
-           </div>
+           <CartMenu  />
         </div>
     )
 }
