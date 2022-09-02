@@ -40,7 +40,10 @@ export const getRemovedCityId = (cityID) => dispatch => {
 export const getRemovedCityName = (cityName) => dispatch => {
     dispatch({type: 'GET_REMOVED_CITY_NAME', payload:cityName})
 }
-export const filterRemovedCitiesArray = (city) => dispatch => {
-    dispatch({type: 'FILTER_REMOVED_CITIES_ARRAY', payload:city})
+export const deleteRemovedCityData = (idOfCity, cityName, index) => dispatch => {
+    dispatch({type: 'DELETE_REMOVED_CITY_DATA', payload:[idOfCity,cityName,index]})
+}
+export const setIsSituationDeletingCity = () =>  dispatch => {
+    dispatch({type: 'SET_IS_DELETING_CITY'})
 }
 
