@@ -6,27 +6,44 @@ import Cart from "./Cart";
 function Carts(props){
 
 useEffect(() => {
-    if(props.selectedCities.length <=1){
-        props.getPositionOfCity(props.selectedCities[0])
-    }else {
-        props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
+    if(props.isSituationDeletingCity===false){
+
+        if(props.selectedCities.length <=1){
+            props.getPositionOfCity(props.selectedCities[0])
+        }else {
+            props.getPositionOfCity(props.selectedCities[props.selectedCities.length-1])
+        }
     }
 },[props.selectedCities])
   
-console.log(props.selectedCities)
-console.log(props.infoOfSelectedCities)
+
+
 
 useEffect(() => {
-    if(props.isTakenPositionFromApi===true){
-        const lat = props.infoOfSelectedCities[props.infoOfSelectedCities.length-1]?.lat
-        const lon = props.infoOfSelectedCities[props.infoOfSelectedCities.length-1]?.lon
+    const index = props.infoOfSelectedCities.length-1
+
+    if(props.isTakenPositionFromApi===true && props.infoOfSelectedCities[index]  !== undefined){
+        const lat = props.infoOfSelectedCities[index]?.lat
+        const lon = props.infoOfSelectedCities[index]?.lon
         props.getWeatherForecast(lat,lon)
+        
     }
 },[props.isTakenPositionFromApi])
 
 const weatherCarts = props.allWeatherForecasts.map((city,i) => {
-    return <Cart 
+    //console.log(props.selectedCities.filter(item => props.removedCities.includes(item)))
+    
+    
+    console.log(props.data)
+    console.log(props.allWeatherForecasts)
+    console.log(props.selectedCities)
+    console.log(props.infoOfSelectedCities)
+   
+        
+        return <Cart 
                  key={i}
+                 idOfCity={city.id}
+                 index={i}
                  city={props.selectedCities[i]}
                  country={city.sys.country}
                  weatherState={city.weather[0].description}
@@ -35,7 +52,6 @@ const weatherCarts = props.allWeatherForecasts.map((city,i) => {
                  humidity={city.main.humidity}
             />
 })
-console.log(props.allWeatherForecasts)
 
 return( 
     <div className="carts">
@@ -48,7 +64,11 @@ const mapStateToProps  = state => {
         infoOfSelectedCities:state.infoOfSelectedCities,
         allWeatherForecasts:state.allWeatherForecasts,
         selectedCities:state.selectedCities,
-        isTakenPositionFromApi:state.isTakenPositionFromApi
+        isTakenPositionFromApi:state.isTakenPositionFromApi,
+        removedCitiesId:state.removedCitiesId,
+        idOfSelectedCities:state.idOfSelectedCities,
+        data:state.data,
+        isSituationDeletingCity:state.isSituationDeletingCity
     }
 }
 export default connect(mapStateToProps,{getWeatherForecast,getPositionOfCity})(Carts)
