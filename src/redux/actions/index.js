@@ -3,11 +3,17 @@ import axios from "axios"
 export const toggle = () => dispatch => {
     dispatch({type: 'TOGGLE'})
 }
-export const showSideBar = () => dispatch => {
-    dispatch({type: 'SHOW_SIDEBAR'})
+export const showSidebarAddCity = () => dispatch => {
+    dispatch({type: 'SHOW_SIDEBAR_ADD_CITY'})
 }
-export const hideSideBar = () => dispatch => {
-    dispatch({type: 'HIDE_SIDEBAR'})
+export const hideSidebarAddCity = () => dispatch => {
+    dispatch({type: 'HIDE_SIDEBAR_ADD_CITY'})
+}
+export const showSidebarDeleteCity = ()  => dispatch => {
+    dispatch({type: 'SHOW_SIDEBAR_DELETE_CITY'})
+}
+export const hideSidebarDeleteCity = () => dispatch => {
+    dispatch({type: 'HIDE_SIDEBAR_DELETE_CITY'})
 }
 export const getCountries = () => dispatch => {
     axios
@@ -40,8 +46,11 @@ export const getRemovedCityId = (cityID) => dispatch => {
 export const getRemovedCityName = (cityName) => dispatch => {
     dispatch({type: 'GET_REMOVED_CITY_NAME', payload:cityName})
 }
-export const deleteRemovedCityData = (idOfCity, cityName, index) => dispatch => {
-    dispatch({type: 'DELETE_REMOVED_CITY_DATA', payload:[idOfCity,cityName,index]})
+export const getDataOfWillBeRemovedCity = (idOfCity, cityName, index) => dispatch => {
+    dispatch({type: 'GET_REMOVED_CITY_DATA', payload:[idOfCity,cityName,index]})
+}
+export const removeCity = ()  => dispatch => {
+    dispatch({type: 'REMOVE_CITY'})
 }
 export const setIsSituationDeletingCity = () =>  dispatch => {
     dispatch({type: 'SET_IS_DELETING_CITY'})
