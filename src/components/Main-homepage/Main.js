@@ -1,4 +1,5 @@
 import React from "react";
+import SideBarAddCity from "./SideBarAddCity";
 import { showSideBar} from "../../redux/actions";
 import { connect } from "react-redux";
 
@@ -7,6 +8,7 @@ function Main(props){
     const theme = props.isToggle ? 'dark' : 'light'
     
     return(
+        <>
         <main className={"main"} >
             <div className={"main-elements"}>
                 <h1>Tracked Cities</h1>
@@ -14,6 +16,9 @@ function Main(props){
                 <button onClick={() => props.showSideBar()} className={`${theme}-modeForBtnAdd btn`} >+ Add City</button>
             </div>
         </main>
+        <SideBarAddCity />
+        </>
+        
     )
 }
 const mapStateToProps = state => {
