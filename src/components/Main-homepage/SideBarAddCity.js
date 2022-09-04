@@ -1,5 +1,6 @@
 import React,{ useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
+import Shadow from "./Shadow";
 import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
@@ -69,6 +70,7 @@ function SideBar(props){
    
   
     return(
+        <>
         <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}}  ref={sidebarRef}>
             <div className="sidebar-homepage-elements">
                 <div className="sidebar-header">
@@ -101,6 +103,7 @@ function SideBar(props){
                         className={`btn btn-save`} 
                         disabled={isDisableSelectCity}
                         onClick={() => {handleSaveButton()}}
+                        style={{cursor: isDisableSelectCity ? 'not-allowed': 'pointer'}}
                          >
                             <img alt="" disabled={isDisableSelectCity} className="btn-img" src={saveIcon} />
                         Save
@@ -108,6 +111,8 @@ function SideBar(props){
                 </div>
             </div>
         </div>
+        <Shadow />
+        </>
     )
 }
 const mapStateToProps = state =>{
