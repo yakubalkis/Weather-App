@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     isToggle: false,
-    isShow:false,
+    isShowSidebarAddCity:false,
+    isShowSidebarDeleteCity:false,
     countries:[],
     selectedCountry:'',
     selectedCity:'',
@@ -19,10 +20,14 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
     switch(action.type){
         case 'TOGGLE':
             return {...state, isToggle:!state.isToggle}
-        case 'SHOW_SIDEBAR':
-            return {...state, isShow:true}
-        case 'HIDE_SIDEBAR':
-            return {...state, isShow:false}
+        case 'SHOW_SIDEBAR_ADD_CITY':
+            return {...state, isShowSidebarAddCity:true}
+        case 'HIDE_SIDEBAR_ADD_CITY':
+            return {...state, isShowSidebarAddCity:false}
+        case 'SHOW_SIDEBAR_DELETE_CITY':
+            return {...state, isShowSidebarDeleteCity:true}
+        case 'HIDE_SIDEBAR_DELETE_CITY':
+            return {...state, isShowSidebarDeleteCity:false}
         case 'GET_COUNTRIES_SUCCESS':
             return {...state, countries:action.payload}
         case 'GET_POSITION_OF_CITY_START':
@@ -41,14 +46,15 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, removedCityId:action.payload}
         case 'GET_REMOVED_CITY_NAME':
             return {...state, removedCityName:action.payload}
-        case 'DELETE_REMOVED_CITY_DATA':
+        case 'GET_REMOVED_CITY_DATA':
+            return {...state, data:action.payload}
+        case 'REMOVE_CITY':
             return {...state,
-                    data:action.payload, 
-                    isSituationDeletingCity:true,
-                    allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
-                    selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
-                    infoOfSelectedCities:state.infoOfSelectedCities.splice(state.data[2],1)
-                }
+                isSituationDeletingCity:true,
+                allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
+                selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
+                infoOfSelectedCities:state.infoOfSelectedCities.splice(state.data[2],1)
+            }
         case 'SET_IS_DELETING_CITY':
             return {...state, isSituationDeletingCity:false}
         default:
