@@ -1,7 +1,7 @@
 import React,{ useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
 import Shadow from "./Shadow";
-import { showSideBar,hideSideBar, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
+import { hideSidebarAddCity, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
 import cancelIconDark from '../img/cancelDark.png'
@@ -23,7 +23,7 @@ function SideBar(props){
     useEffect(()  => {
         document.addEventListener("mousedown", (event) =>  {
             if(!sidebarRef.current?.contains(event.target))
-                props.hideSideBar()
+                props.hideSidebarAddCity()
         })
     })
 
@@ -49,7 +49,8 @@ function SideBar(props){
             setIsDisableSelectCity(false)
             props.getCity(e.target.value)
         }
-        else{setIsDisableSelectCity(true)}
+        else{setIsDisableSelectCity(true)
+        }
     }
     
     function handleSaveButton(){
@@ -71,21 +72,21 @@ function SideBar(props){
   
     return(
         <>
-        <div className={`sidebar-homepage ${theme}-modeSidebar`} style={{display: props.isShow ? 'block':'none'}}  ref={sidebarRef}>
-            <div className="sidebar-homepage-elements">
+        <div className={`sidebar ${theme}-modeSidebar`} style={{display: props.isShowSidebarAddCity ? 'block':'none'}}  ref={sidebarRef}>
+            <div className="sidebar-elements">
                 <div className="sidebar-header">
                     <h3>Add City</h3>
-                    <img alt="" onClick={() => props.hideSideBar()} className="btn" src={xIcon} />
+                    <img alt="" onClick={() => props.hideSidebarAddCity()} className="btn" src={xIcon} />
                 </div>
                 <div className="sidebar-selects" >
                 <p>Country</p>
-                    {props.isShow && <select onClick={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
+                    {props.isShowSidebarAddCity && <select onClick={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
                         <option value='no select' >Select a country</option>
                         {optionsCountries}
                         
                     </select>}
                     <p className="select-city">City</p>
-                    {props.isShow && <select onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
+                    {props.isShowSidebarAddCity && <select onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
                         <option value='no select' >Select a city</option>
                         {optionsCities}
                     </select>}
@@ -93,32 +94,32 @@ function SideBar(props){
                 <div className="sidebar-footer" >
                     <button 
                         className={`btn ${theme}-mode`}
-                        onClick={() => props.hideSideBar()}
+                        onClick={() => {props.hideSidebarAddCity(); setIsDisableSelectCountry(true)}}
                             >
                             <img alt="" className="btn-img" src={cancelIcon} />
-                        Cancel
+                            Cancel
                     </button>
 
                     <button 
                         className={`btn btn-save`} 
                         disabled={isDisableSelectCity}
-                        onClick={() => {handleSaveButton()}}
+                        onClick={() => {handleSaveButton();props.hideSidebarAddCity()}}
                         style={{cursor: isDisableSelectCity ? 'not-allowed': 'pointer'}}
                          >
                             <img alt="" disabled={isDisableSelectCity} className="btn-img" src={saveIcon} />
-                        Save
+                            Save
                     </button>
                 </div>
             </div>
         </div>
-        <Shadow />
+        {props.isShowSidebarAddCity && <Shadow />}
         </>
     )
 }
 const mapStateToProps = state =>{
     return { 
         isToggle:state.isToggle,
-        isShow:state.isShow,
+        isShowSidebarAddCity:state.isShowSidebarAddCity,
         countries:state.countries,
         selectedCountry:state.selectedCountry,
         selectedCity:state.selectedCity,
@@ -128,8 +129,8 @@ const mapStateToProps = state =>{
     }
 }
 export default connect(mapStateToProps, 
-                        {showSideBar,
-                        hideSideBar, 
+                        {
+                        hideSidebarAddCity, 
                         getCountries, 
                         getCountry, 
                         getCity, 
