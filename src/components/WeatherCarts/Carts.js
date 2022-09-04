@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getWeatherForecast,getPositionOfCity } from "../../redux/actions";
 import Cart from "./Cart";
+import SideBarDeleteCity from "./SideBarDeleteCity";
 
 function Carts(props){
 
+console.log(props.selectedCities)
+
+
 useEffect(() => {
     if(props.isSituationDeletingCity===false){
-
         if(props.selectedCities.length <=1){
             props.getPositionOfCity(props.selectedCities[0])
         }else {
@@ -17,8 +20,6 @@ useEffect(() => {
 },[props.selectedCities])
   
 
-
-
 useEffect(() => {
     const index = props.infoOfSelectedCities.length-1
 
@@ -26,37 +27,37 @@ useEffect(() => {
         const lat = props.infoOfSelectedCities[index]?.lat
         const lon = props.infoOfSelectedCities[index]?.lon
         props.getWeatherForecast(lat,lon)
-        
     }
 },[props.isTakenPositionFromApi])
 
+
 const weatherCarts = props.allWeatherForecasts.map((city,i) => {
-    //console.log(props.selectedCities.filter(item => props.removedCities.includes(item)))
-    
-    
-    console.log(props.data)
-    console.log(props.allWeatherForecasts)
-    console.log(props.selectedCities)
-    console.log(props.infoOfSelectedCities)
    
-        
-        return <Cart 
-                 key={i}
-                 idOfCity={city.id}
-                 index={i}
-                 city={props.selectedCities[i]}
-                 country={city.sys.country}
-                 weatherState={city.weather[0].description}
-                 currentTemp={city.main.temp}
-                 feelsLike={city.main.feels_like}
-                 humidity={city.main.humidity}
-            />
+    console.log(props.allWeatherForecasts)
+    console.log(props.infoOfSelectedCities)
+
+    return <Cart 
+                key={i}
+                idOfCity={city.id}
+                index={i}
+                city={props.selectedCities[i]}
+                country={city.sys.country}
+                weatherState={city.weather[0].description}
+                currentTemp={city.main.temp}
+                feelsLike={city.main.feels_like}
+                humidity={city.main.humidity}
+        />
 })
 
 return( 
-    <div className="carts">
-        {weatherCarts}
-    </div>
+    <>
+    
+        <div className="carts">
+            {weatherCarts}
+        </div>
+        <SideBarDeleteCity />
+    </>
+    
 )
 }
 const mapStateToProps  = state => {
