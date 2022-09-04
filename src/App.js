@@ -9,8 +9,13 @@ function App(props){
 
   useEffect(() => {
     const body = document.querySelector('body')
-    body.style.overflow = props.isShow ? 'hidden' : 'auto'
-  },[props.isShow])
+    body.style.overflow = props.isShowSidebarAddCity ? 'hidden' : 'auto'
+  },[props.isShowSidebarAddCity])
+
+  useEffect(() => {
+    const body = document.querySelector('body')
+    body.style.overflow = props.isShowSidebarDeleteCity ? 'hidden': 'auto'
+  },[props.isShowSidebarDeleteCity])
 
 
   return (
@@ -24,7 +29,9 @@ function App(props){
 const mapStateToProps = state => {
   return {
     isToggle:state.isToggle,
-    isShow:state.isShow
+    isShowSidebarAddCity:state.isShowSidebarAddCity,
+    isShowSidebarDeleteCity:state.isShowSidebarDeleteCity
+
   }
 }
 
