@@ -1,6 +1,5 @@
 import React from "react";
-import SideBar from "./SideBar";
-import { showSideBar } from "../../redux/actions";
+import { showSideBar} from "../../redux/actions";
 import { connect } from "react-redux";
 
 
@@ -8,13 +7,12 @@ function Main(props){
     const theme = props.isToggle ? 'dark' : 'light'
     
     return(
-        <main className={"main"}>
+        <main className={"main"} >
             <div className={"main-elements"}>
                 <h1>Tracked Cities</h1>
                 <h2>All the cities you are saved to see the weather!</h2>
                 <button onClick={() => props.showSideBar()} className={`${theme}-modeForBtnAdd btn`} >+ Add City</button>
             </div>
-            {props.isShow && <SideBar/>}
         </main>
     )
 }
