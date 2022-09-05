@@ -58,3 +58,6 @@ export const setIsSituationDeletingCity = () =>  dispatch => {
 export const getViewedCityName = (cityName) => dispatch => {
     dispatch({type: 'GET_VIEWED_CITY_NAME', payload:cityName})
 }
+export const getDataFromLocalStorage = () => dispatch => {
+    dispatch({type: 'GET_DATA_FROM_LOCAL_STORAGE'})
+}
