@@ -55,4 +55,6 @@ export const removeCity = ()  => dispatch => {
 export const setIsSituationDeletingCity = () =>  dispatch => {
     dispatch({type: 'SET_IS_DELETING_CITY'})
 }
-
+export const getViewedCityName = (cityName) => dispatch => {
+    dispatch({type: 'GET_VIEWED_CITY_NAME', payload:cityName})
+}
