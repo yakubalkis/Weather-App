@@ -44,7 +44,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
 
         case 'GET_POSITION_OF_CITY':
             return {...state, infoOfSelectedCities:[...state.infoOfSelectedCities,action.payload], isTakenPositionFromApi:true}
-
+        case 'SET_IS_TAKEN_POSITION_FROM_API':
+            return {...state, isTakenPositionFromApi:false}
         case 'GET_WEATHER_FORECAST':
             return {...state, allWeatherForecasts:[...state.allWeatherForecasts, action.payload]}
 
