@@ -26,6 +26,9 @@ export const getPositionOfCity = (city) => dispatch => {
     .get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=504192fcd7519634ad8589d58391b7c4`)
     .then(response => dispatch({type:'GET_POSITION_OF_CITY', payload:response.data[0]}) )
 }
+export const setIsTakenPositionFromApi = () => dispatch => {
+    dispatch({type:'SET_IS_TAKEN_POSITION_FROM_API'})
+}
 export const getCountry = (country) => dispatch => {
     dispatch({type: 'GET_COUNTRY', payload:country})
 }
