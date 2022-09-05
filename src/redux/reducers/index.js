@@ -16,7 +16,8 @@ const INITIAL_STATE = {
     viewedCityName:'',
     weatherData:[],
     positionData:[],
-    selectedCitiesData:[]
+    selectedCitiesData:[],
+    isCameBackHomePage:false
 }
 
 export const reducer = ( state = INITIAL_STATE, action ) => {
@@ -39,9 +40,6 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
         case 'GET_COUNTRIES_SUCCESS':
             return {...state, countries:action.payload}
 
-        case 'GET_POSITION_OF_CITY_START':
-            return {...state, isTakenPositionFromApi:false} 
-
         case 'GET_POSITION_OF_CITY':
             return {...state, infoOfSelectedCities:[...state.infoOfSelectedCities,action.payload], isTakenPositionFromApi:true}
         case 'SET_IS_TAKEN_POSITION_FROM_API':
@@ -56,7 +54,7 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, selectedCity:action.payload}
 
         case 'ADD_CITY':
-            return {...state, selectedCities:[...state.selectedCities, action.payload]}
+            return {...state, selectedCities:[...state.selectedCities, action.payload], isCameBackHomePage:false}
 
         case 'GET_REMOVED_CITY_ID':
             return {...state, removedCityId:action.payload}
@@ -69,10 +67,11 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
 
         case 'REMOVE_CITY':
             return {...state,
+                isCameBackHomePage:false,
                 isSituationDeletingCity:true,
                 allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
                 selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
-                infoOfSelectedCities:state.infoOfSelectedCities.splice(state.data[2],1)
+                infoOfSelectedCities:state.infoOfSelectedCities.filter((item,i ) => i !== state.data[2])
             }
         case 'SET_IS_DELETING_CITY':
             return {...state, isSituationDeletingCity:false}
@@ -85,6 +84,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
                     positionData:JSON.parse(localStorage.getItem('positionData')),
                     selectedCitiesData:JSON.parse(localStorage.getItem('selectedCities'))
             }
+        case 'COME_BACK_HOMEPAGE':
+            return {...state, isCameBackHomePage:true}
         default:
             return state
     }
