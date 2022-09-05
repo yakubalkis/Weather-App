@@ -21,7 +21,6 @@ export const getCountries = () => dispatch => {
     .then(response => dispatch({type: 'GET_COUNTRIES_SUCCESS', payload:response.data}))
 }
 export const getPositionOfCity = (city) => dispatch => {
-    dispatch({type:'GET_POSITION_OF_CITY_START'})
     axios
     .get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=504192fcd7519634ad8589d58391b7c4`)
     .then(response => dispatch({type:'GET_POSITION_OF_CITY', payload:response.data[0]}) )
@@ -63,4 +62,7 @@ export const getViewedCityName = (cityName) => dispatch => {
 }
 export const getDataFromLocalStorage = () => dispatch => {
     dispatch({type: 'GET_DATA_FROM_LOCAL_STORAGE'})
+}
+export const isUserComeBackHomePage = () => dispatch => {
+    dispatch({type:'COME_BACK_HOMEPAGE'})
 }
