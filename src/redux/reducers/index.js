@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     weatherData:[],
     positionData:[],
     selectedCitiesData:[],
-    isCameBackHomePage:false
+    isCameBackHomePage:false,
+    isShowMessageRemoved:false
 }
 
 export const reducer = ( state = INITIAL_STATE, action ) => {
@@ -71,7 +72,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
                 isSituationDeletingCity:true,
                 allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
                 selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
-                infoOfSelectedCities:state.infoOfSelectedCities.filter((item,i ) => i !== state.data[2])
+                infoOfSelectedCities:state.infoOfSelectedCities.filter((item,i ) => i !== state.data[2]),
+                isShowMessageRemoved:true
             }
         case 'SET_IS_DELETING_CITY':
             return {...state, isSituationDeletingCity:false}
@@ -86,6 +88,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             }
         case 'COME_BACK_HOMEPAGE':
             return {...state, isCameBackHomePage:true}
+        case 'SET_IS_SHOW_MESSAGE_REMOVED':
+            return {...state, isShowMessageRemoved:false}
         default:
             return state
     }

@@ -66,3 +66,6 @@ export const getDataFromLocalStorage = () => dispatch => {
 export const isUserComeBackHomePage = () => dispatch => {
     dispatch({type:'COME_BACK_HOMEPAGE'})
 }
+export const setIsShowMessageRemoved = () => dispatch => {
+    dispatch({type:'SET_IS_SHOW_MESSAGE_REMOVED'})
+}
