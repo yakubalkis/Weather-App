@@ -1,4 +1,4 @@
-import React,{ useEffect, useRef, useState} from "react";
+import React,{ useCallback, useEffect, useRef, useState} from "react";
 import { connect } from "react-redux";
 import Shadow from "./Shadow";
 import { hideSidebarAddCity, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
@@ -13,20 +13,14 @@ import OptionCity from "./optionCity";
 
 
 function SideBar(props){
-    const sidebarRef = useRef()
+    
     const [isDisableSelectCountry, setIsDisableSelectCountry ] = useState(true)
     const [isDisableSelectCity, setIsDisableSelectCity] = useState(true)
     const theme = props.isToggle ? 'dark':'light'
     const xIcon = props.isToggle ? xIconDark : xIconLight
     const cancelIcon = props.isToggle ? cancelIconDark : cancelIconLight
-
-    useEffect(()  => {
-        document.addEventListener("mousedown", (event) =>  {
-            if(!sidebarRef.current?.contains(event.target))
-                props.hideSidebarAddCity()
-        })
-    })
-
+    
+    
     useEffect(() => {
        props.getCountries()
     },[])
@@ -72,8 +66,8 @@ function SideBar(props){
   
     return(
         <>
-        <div className={`sidebar ${theme}-modeSidebar`} style={{display: props.isShowSidebarAddCity ? 'block':'none'}}  ref={sidebarRef}>
-            <div className="sidebar-elements">
+        <div className={`sidebar ${theme}-modeSidebar`}   style={{display: props.isShowSidebarAddCity ? 'block':'none'}} >
+            <div className="sidebar-elements"  >
                 <div className="sidebar-header">
                     <h3>Add City</h3>
                     <img alt="" onClick={() => props.hideSidebarAddCity()} className="btn" src={xIcon} />

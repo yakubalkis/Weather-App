@@ -9,21 +9,15 @@ import cancelIconDark from '../img/cancelDark.png'
 import cancelIconLight from '../img/cancelLight.png'
 
 function SideBarDeleteCity(props){
-    const sidebarDeleteRef = useRef()
+
     const theme = props.isToggle ? 'dark':'light'
     const xIcon = props.isToggle ? xIconDark : xIconLight
     const cancelIcon = props.isToggle ? cancelIconDark : cancelIconLight
 
-    useEffect(()  => {
-        document.addEventListener("mousedown", (event) =>  {
-            if(!sidebarDeleteRef.current?.contains(event.target))
-                props.hideSidebarDeleteCity()
-        })
-    })
 
     return (
         <>
-        <div className={`sidebar ${theme}-modeSidebar`} style={{display: props.isShowSidebarDeleteCity ? 'block':'none'}} ref={sidebarDeleteRef}>
+        <div className={`sidebar ${theme}-modeSidebar`} style={{display: props.isShowSidebarDeleteCity ? 'block':'none'}} >
             <div className="sidebar-elements">
                 <div className="sidebar-header">
                     <h3>Remove {props.removedCityName} City</h3>
