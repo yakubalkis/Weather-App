@@ -7,5 +7,7 @@ function Shadow(props){
         </>
     )
 }
-const mapStateToProps = state => {}
+const mapStateToProps = state => {
+    return {}
+}
 export default connect(mapStateToProps, {hideSidebarAddCity,hideSidebarDeleteCity})(Shadow)
