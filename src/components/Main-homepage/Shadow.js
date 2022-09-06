@@ -1,7 +1,11 @@
-export default function Shadow(){
+import { connect } from "react-redux"
+import { hideSidebarAddCity, hideSidebarDeleteCity } from "../../redux/actions"
+function Shadow(props){
     return (
         <>
-        <div className="shadow" ></div>
+        <div onClick={() => {props.hideSidebarDeleteCity();props.hideSidebarAddCity()}} className="shadow" ></div>
         </>
     )
 }
+const mapStateToProps = state => {}
+export default connect(mapStateToProps, {hideSidebarAddCity,hideSidebarDeleteCity})(Shadow)
