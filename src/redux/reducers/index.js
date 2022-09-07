@@ -9,8 +9,7 @@ const INITIAL_STATE = {
     infoOfSelectedCities:[],
     allWeatherForecasts:[],
     isTakenPositionFromApi:false,
-    removedCityId:5,
-    removedCityName:'',
+    cityId:1,
     data:[],
     isSituationDeletingCity:false,
     viewedCityName:'',
@@ -56,12 +55,6 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
 
         case 'ADD_CITY':
             return {...state, selectedCities:[...state.selectedCities, action.payload], isCameBackHomePage:false}
-
-        case 'GET_REMOVED_CITY_ID':
-            return {...state, removedCityId:action.payload}
-
-        case 'GET_REMOVED_CITY_NAME':
-            return {...state, removedCityName:action.payload}
 
         case 'GET_REMOVED_CITY_DATA':
             return {...state, data:action.payload}
