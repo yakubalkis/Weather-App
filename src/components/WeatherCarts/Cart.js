@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import getDays from '../CustomFunctions/getDays'
 import CartMenu from './CartMenu'
 import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
+import { useLocation } from 'react-router'
 
 
 
 function Cart(props){
 
-
+    
+    const [isShowComponent, setIsShowComponent]  = useState(false)
+    const {pathname} = useLocation()
+    useEffect(() => {
+        if(pathname === '/'){
+            setIsShowComponent(true)
+        }else {setIsShowComponent(false)}
+    },[pathname])
+   
     return(
         <div className="cart">
            <p className="cart-day">{getDays()[1]}</p>
@@ -30,7 +39,7 @@ function Cart(props){
                     <p className='temp'>{props.humidity}%</p>
                 </div>
            </div>
-           <CartMenu idOfCity={props.idOfCity} cityName={props.city} index={props.index}  />
+          {isShowComponent && <CartMenu idOfCity={props.idOfCity} cityName={props.city} index={props.index}  />}
         </div>
     )
 }
