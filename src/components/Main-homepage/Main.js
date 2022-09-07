@@ -1,7 +1,8 @@
 import React from "react";
-import SideBarAddCity from "./SideBarAddCity";
-import { showSideBar} from "../../redux/actions";
 import { connect } from "react-redux";
+import SideBarAddCity from "./SideBarAddCity";
+import RemovedMessage from "../messages/Removed";
+import { showSidebarAddCity} from "../../redux/actions";
 
 
 function Main(props){
@@ -13,10 +14,11 @@ function Main(props){
             <div className={"main-elements"}>
                 <h1>Tracked Cities</h1>
                 <h2>All the cities you are saved to see the weather!</h2>
-                <button onClick={() => props.showSideBar()} className={`${theme}-modeForBtnAdd btn`} >+ Add City</button>
+                <button onClick={() => props.showSidebarAddCity()} className={`${theme}-modeForBtnAdd add-btn btn`} ><span className="plus" >+</span>Add City</button>
             </div>
         </main>
         <SideBarAddCity />
+        <RemovedMessage />
         </>
         
     )
@@ -24,8 +26,8 @@ function Main(props){
 const mapStateToProps = state => {
     return {
         isToggle:state.isToggle,
-        isShow:state.isShow
+        allWeatherForecasts:state.allWeatherForecasts
     }
 }
 
-export default connect(mapStateToProps, {showSideBar})(Main)
+export default connect(mapStateToProps, {showSidebarAddCity})(Main)
