@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { legacy_createStore as createStore, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -8,12 +8,14 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
 import App from './App';
 
+const rootElement =  document.getElementById('root')
+const root = createRoot(rootElement)
 const store = createStore(reducer, applyMiddleware(thunk))
 
-ReactDOM.render(
+root.render(
                 <Provider store={store} >
                     <Router>
                         <App/>
                     </Router>
                 </Provider>   
-                    , document.getElementById('root'))
+            )
