@@ -18,6 +18,6 @@ export default function getWeatherIcon(weatherState, temp){
     else if(weatherState==='scattered clouds'){return iconScatteredClouds}
     else if(weatherState==='overcast clouds'){return iconOvercastClouds}
     else if(weatherState==='broken clouds'){return iconBrokenClouds}
-    else if(weatherState==='light rain'){return iconLightRain}
+    else if(weatherState==='light rain' || 'heavy intensity rain' || 'moderate rain'){return iconLightRain}
     else return iconSun
 }
