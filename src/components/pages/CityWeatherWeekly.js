@@ -1,8 +1,9 @@
 import React,{useState, useRef, useEffect} from "react"
 import { connect } from "react-redux"
 import { motion } from "framer-motion"
-import Cart from "../WeatherCarts/Cart"
-import DetailedSmallCart from "./DetailedSmallCart"
+//import Cart from "../WeatherCarts/Cart"
+import FirstWeatherCart from "./firstWeatherCart"
+import DetailedSmallCart from "./detailedSmallCart"
 
 function CityWeatherWeekly(props){
 
@@ -11,26 +12,11 @@ function CityWeatherWeekly(props){
     useEffect(() =>{
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
     },[])
-    const firstWeatherCart= props.allWeatherForecasts.map((city,i) => {
-        if(props.data[2] === i){
-            return <Cart 
-                        key={i}
-                        idOfCity={city.id}
-                        index={i}
-                        city={props.data[1]}
-                        country={city.sys.country}
-                        weatherState={city.weather[0].description}
-                        currentTemp={city.main.temp}
-                        feelsLike={city.main.feels_like}
-                        humidity={city.main.humidity}
-                   />
-        }
-        else return false
-    })
-
+    
+    console.log(props.weeklyWeatherForecast)
     return(
             <div className="carts">
-                {firstWeatherCart}
+                <FirstWeatherCart />
                 <motion.div ref={carouselRef} className="carousel">
                     <motion.div drag="x" dragConstraints={{right:0,left:-width}} className="inner-carousel">
                         <motion.div className="item"><DetailedSmallCart/></motion.div> 
@@ -50,7 +36,8 @@ function CityWeatherWeekly(props){
 const mapStateToProps = state => {
     return {
         allWeatherForecasts:state.allWeatherForecasts,
-        data:state.data
+        data:state.data,
+        weeklyWeatherForecast:state.weeklyWeatherForecast
     }
 }
 export default connect(mapStateToProps)(CityWeatherWeekly)
