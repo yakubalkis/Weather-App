@@ -10,16 +10,18 @@ import { useLocation } from 'react-router'
 function Cart(props){
 
     
-    const [isShowComponent, setIsShowComponent]  = useState(false)
+    const [isHomePage, setIsHomePage]  = useState(false)
     const {pathname} = useLocation()
     useEffect(() => {
         if(pathname === '/'){
-            setIsShowComponent(true)
-        }else {setIsShowComponent(false)}
+            setIsHomePage(true)
+        }else { setIsHomePage(false)}
     },[pathname])
-   
+    const styleCursor = {
+        cursor: isHomePage ? 'default':'pointer'
+    }
     return(
-        <div className="cart">
+        <div className="cart" style={styleCursor}>
            <p className="cart-day">{getDays()[1]}</p>
            <p className="cart-day-number">{getDays()[0]}</p>
            <img className="cart-icon" alt="" src={getWeatherIcon(props.weatherState, props.currentTemp)} />
@@ -39,7 +41,7 @@ function Cart(props){
                     <p className='temp'>{props.humidity}%</p>
                 </div>
            </div>
-          {isShowComponent && <CartMenu idOfCity={props.idOfCity} cityName={props.city} index={props.index}  />}
+          {isHomePage && <CartMenu idOfCity={props.idOfCity} cityName={props.city} index={props.index}  />}
         </div>
     )
 }
