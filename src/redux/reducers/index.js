@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     positionData:[],
     selectedCitiesData:[],
     isCameBackHomePage:false,
-    isShowMessageRemoved:false
+    isShowMessageRemoved:false,
+    weeklyWeatherForecast:[]
 }
 
 export const reducer = ( state = INITIAL_STATE, action ) => {
@@ -83,6 +84,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isCameBackHomePage:true}
         case 'SET_IS_SHOW_MESSAGE_REMOVED':
             return {...state, isShowMessageRemoved:false}
+        case 'GET_WEEKLY_WEATHER_FORECAST':
+            return {...state, weeklyWeatherForecast: action.payload }
         default:
             return state
     }

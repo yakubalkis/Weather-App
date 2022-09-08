@@ -64,3 +64,8 @@ export const isUserComeBackHomePage = () => dispatch => {
 export const setIsShowMessageRemoved = () => dispatch => {
     dispatch({type:'SET_IS_SHOW_MESSAGE_REMOVED'})
 }
+export const getWeeklyWeatherForecast = (idOfCity) => dispatch => {
+    axios
+    .get(`https://api.openweathermap.org/data/2.5/forecast?id=${idOfCity}&cnt=7&units=metric&appid=b074f4fee50925ca01787fc6c59090d6`)
+    .then(response => dispatch({type: 'GET_WEEKLY_WEATHER_FORECAST', payload:response.data}))
+}
