@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 //import Cart from "../WeatherCarts/Cart"
 import getDays from "../CustomFunctions/getDays"
 import getMaxMinTemp from "../CustomFunctions/getMaxMinTemp"
+import getCurrentDescription from "../CustomFunctions/getCurrentDescription"
 import FirstWeatherCart from "./firstWeatherCart"
 import DetailedSmallCart from "./detailedSmallCart"
 
@@ -11,22 +12,31 @@ function CityWeatherWeekly(props){
 
     const [width, setWidth] = useState(0)
     const [tempDayData, setTempDayData] = useState([])
+    const [currentWeatherStates, setCurrentWeatherStates] = useState([])
     const currentDay = getDays()[0]
     const carouselRef = useRef()
 
     useEffect(() =>{
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
-    },[]) 
+    },[tempDayData]) 
     
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
-           setTempDayData(getMaxMinTemp(props.weeklyWeatherForecast)) 
+           setTempDayData(getMaxMinTemp(props.weeklyWeatherForecast))
+           setCurrentWeatherStates(getCurrentDescription(props.weeklyWeatherForecast))
         }
     },[props.weeklyWeatherForecast])
     
 
     const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => {
-        return <DetailedSmallCart key={i} day={item.day} maxTemp={item.maxTemp} minTemp={item.minTemp} />
+        return <DetailedSmallCart 
+                    key={i} 
+                    day={item.day} 
+                    maxTemp={item.maxTemp}  
+                    minTemp={item.minTemp} 
+                    description={currentWeatherStates[i].description}
+                    currentTemp={currentWeatherStates[i].currentTemp} 
+                />
     }): false
    
     console.log(props.weeklyWeatherForecast)
