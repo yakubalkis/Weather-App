@@ -10,27 +10,24 @@ import DetailedSmallCart from "./detailedSmallCart"
 function CityWeatherWeekly(props){
 
     const [width, setWidth] = useState(0)
-    let maxMinTemps;
+    const [tempDayData, setTempDayData] = useState([])
     const currentDay = getDays()[0]
     const carouselRef = useRef()
+
     useEffect(() =>{
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
     },[]) 
+    
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
-            maxMinTemps = getMaxMinTemp(props.weeklyWeatherForecast)
-            console.log(maxMinTemps)
+           setTempDayData(getMaxMinTemp(props.weeklyWeatherForecast)) 
         }
     },[props.weeklyWeatherForecast])
     
 
-    // const detailedSmallCarts = props.weeklyWeatherForecast ?  props.weeklyWeatherForecast.map((item,i) => {
-    //     if(currentDay !== item.dt_txt[8]+item.dt_txt[9]){
-    //         i=i+8
-    //         console.log('hello')
-    //     }
-       
-    // }) :  false
+    const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => {
+        return <DetailedSmallCart key={i} day={item.day} maxTemp={item.maxTemp} minTemp={item.minTemp} />
+    }): false
    
     console.log(props.weeklyWeatherForecast)
 
@@ -39,13 +36,7 @@ function CityWeatherWeekly(props){
                 <FirstWeatherCart />
                 <motion.div ref={carouselRef} className="carousel">
                     <motion.div drag="x" dragConstraints={{right:0,left:-width}} className="inner-carousel">
-                        <motion.div className="item"><DetailedSmallCart/></motion.div> 
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
-                        <motion.div className="item"><DetailedSmallCart/></motion.div>
+                        <motion.div  className="inner-carousel" >{detailedSmallCarts}</motion.div>
                     </motion.div>
                    
                 </motion.div>
