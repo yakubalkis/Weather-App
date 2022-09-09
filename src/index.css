@@ -94,31 +94,49 @@ body{
 .main-elements h1{
   font-size: 3rem;
   margin-left: -.1em;
+  font-weight: 700;
 }
 .main-elements h2{
   margin-top: -7px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 .main-elements button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
   width: 7.5em;
   height: 2.4em;
   margin-left: -0em;
   margin-top: 2.3em;
   border-radius: 5px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  letter-spacing: .5px;
 }
-.sidebar-homepage{
-  position: absolute;
+.plus{
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-left: 10px;
+}
+.shadow{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.sidebar{
+  position: fixed;
   width: 30rem;
-  height: 90%;
+  height: 100%;
   right: 0;
-  top:70px;
-  z-index: 10;
+  top:0;
+  z-index: 15;
 }
-.sidebar-homepage-elements{
+.sidebar-elements{
   width: 27rem;
   height: 100%;
   margin: 0  auto;
@@ -148,6 +166,26 @@ body{
   width: 26rem;
   height: 2.2rem;
 }
+.sidebar-mid{
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-mid-text{
+  font-size: 1.5em;
+  text-align: center;
+}
+.sidebar-mid-text-bold{
+  font-weight: 600;
+}
+.btn-remove{
+  background-color: rgb(211, 4, 4);
+  color: var(--white);
+}
+.remove-btn{
+  padding-left: 0.7em;
+}
 .sidebar-footer{
   position: absolute;
   bottom: 1rem;
@@ -171,10 +209,11 @@ body{
 .carts{
   width: 75%;
   margin: 0 auto;
+  padding-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 2rem;
+  padding-bottom: 2rem;
 }
 .cart{
   width: 20rem;
@@ -229,7 +268,7 @@ body{
   height: 3.5rem;
   width: 90%;
   border-radius: 7px;
-  background: rgba(255, 253, 253, 0.3);
+  background: rgba(255, 253, 253, 0.4);
   margin-bottom: 18px;
 }
 .cart-weather-temp-info{
@@ -247,7 +286,7 @@ body{
   position: absolute;
   margin-top: 3rem;
   margin-right: -17rem;
-  z-index: 15;
+  z-index: 10;
   display: block;
 }
 .cart-menu-button{
@@ -269,4 +308,51 @@ body{
 .button-bottom{
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.message{
+  position: fixed;
+  right: 50%;
+  transform: translateX(50%);
+  width: 250px;
+  height: 45px;
+  bottom: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 10px;
+  z-index: 20;
+}
+.message-removed{
+  background-color: rgba(46, 253, 46,0.7);
+  color: var(--backgroundDarkColor);
+}
+.carousel{
+ overflow: hidden;
+ width: 42rem;
+ border: 1px solid blue;
+}
+.inner-carousel{
+  display: flex;
+  gap: 10px;
+  border: 1px solid red;
+}
+.cart-small{
+  width: 10rem;
+  height: 15rem;
+  cursor: pointer;
+}
+.cart-small:active{
+  cursor: grabbing;
+}
+.cart-small .cart-day-number{
+  transform: translateY(-25px);
+}
+.cart-small .cart-icon{
+  transform: translateY(-25px);
+}
+.cart-small .cart-weather-info-div{
+  height: 2.5rem;
+  width: 80%;
+  border-radius: 10px;
 }
