@@ -1,15 +1,16 @@
 import getDays from "../CustomFunctions/getDays"
-import sunIcon from '../img/icon-sun.png'
+import getWeatherIcon from "../CustomFunctions/getWeatherIcon"
 
-export default function DetailedSmallCart(){
+
+export default function DetailedSmallCart(props){
     return(
-        <div className="cart cart-small" >
+        <div className="cart cart-small">
             <p className="cart-day">{getDays()[1]}</p>
-            <p className="cart-day-number">{getDays()[0]}</p>
-            <img className="cart-icon" alt="" src={sunIcon} />
+            <p className="cart-day-number">{props.day}</p>
+            <img className="cart-icon" alt="" src={getWeatherIcon(props.description, props.currentTemp)} />
             <div className="cart-weather-info-div">
-                    <p className='temp'>32°C</p>
-                    <p className='temp'>20°C</p>
+                    <p className='temp'>{Math.round(props.maxTemp)}°C</p>
+                    <p className='temp' style={{opacity:'0.7'}}>{Math.round(props.minTemp)}°C</p>
            </div>
         </div>
     )
