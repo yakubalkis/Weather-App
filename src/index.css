@@ -354,10 +354,10 @@ body{
   width: 80%;
   border-radius: 10px;
 }
-.tempText{
+.tempText,.descriptionText{
   position: relative;
 }
-.tempText:before {
+.tempText:before, .descriptionText:before {
   content: attr(data-hover);
   visibility: hidden;
   font-size: 10px;
@@ -374,8 +374,13 @@ body{
   left: -2rem;
   top: -2rem;
 }
-
-.tempText:hover:before {
+.descriptionText:before{
+  font-size: 15px;
+  left: -2.1rem;
+  top: -3rem;
+  width: 120px;
+}
+.tempText:hover:before,.descriptionText:hover:before {
   opacity: 1;
   visibility: visible;
 }
