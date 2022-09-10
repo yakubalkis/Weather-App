@@ -330,12 +330,10 @@ body{
 .carousel{
  overflow: hidden;
  width: 42rem;
- border: 1px solid blue;
 }
 .inner-carousel{
   display: flex;
   gap: 10px;
-  border: 1px solid red;
 }
 .cart-small{
   width: 10rem;
@@ -355,4 +353,29 @@ body{
   height: 2.5rem;
   width: 80%;
   border-radius: 10px;
+}
+.tempText{
+  position: relative;
+}
+.tempText:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  font-size: 10px;
+  opacity: 0;
+  width: 100px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  transition: opacity .3s ease-in-out;
+  position: absolute;
+  z-index: 100;
+  left: -2rem;
+  top: -2rem;
+}
+
+.tempText:hover:before {
+  opacity: 1;
+  visibility: visible;
 }
