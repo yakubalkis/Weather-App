@@ -330,6 +330,16 @@ body{
 .carousel{
  overflow: hidden;
  width: 42rem;
+ position: relative;
+}
+.icon-double-left{
+  position: absolute;
+  top: 34%;
+}
+.icon-double-right{
+  position: absolute;
+  top: 30%;
+  right: 0;
 }
 .inner-carousel{
   display: flex;
