@@ -1,19 +1,18 @@
 import React,{useState, useRef, useEffect} from "react"
 import { connect } from "react-redux"
 import { motion } from "framer-motion"
-//import Cart from "../WeatherCarts/Cart"
-import getDays from "../CustomFunctions/getDays"
 import getMaxMinTemp from "../CustomFunctions/getMaxMinTemp"
 import getCurrentDescription from "../CustomFunctions/getCurrentDescription"
 import FirstWeatherCart from "./firstWeatherCart"
 import DetailedSmallCart from "./detailedSmallCart"
+import iconDoubleLeft from '../img/icon-double-left.png'
+import iconDoubleRight from '../img/icon-double-right.png'
 
 function CityWeatherWeekly(props){
 
     const [width, setWidth] = useState(0)
     const [tempDayData, setTempDayData] = useState([])
     const [currentWeatherStates, setCurrentWeatherStates] = useState([])
-    const currentDay = getDays()[0]
     const carouselRef = useRef()
 
     useEffect(() =>{
@@ -31,6 +30,7 @@ function CityWeatherWeekly(props){
     const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => {
         return <DetailedSmallCart 
                     key={i} 
+                    index={i}
                     day={item.day} 
                     maxTemp={item.maxTemp}  
                     minTemp={item.minTemp} 
@@ -48,7 +48,8 @@ function CityWeatherWeekly(props){
                     <motion.div drag="x" dragConstraints={{right:0,left:-width}} className="inner-carousel">
                         <motion.div  className="inner-carousel" >{detailedSmallCarts}</motion.div>
                     </motion.div>
-                   
+                    <img className="icon-double-left" alt="" src={iconDoubleLeft} />
+                    <img className="icon-double-right" alt="" src={iconDoubleRight} />
                 </motion.div>
             </div>
     )
