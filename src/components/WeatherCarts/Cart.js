@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import getDays from '../CustomFunctions/getDays'
-import CartMenu from './CartMenu'
-import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
 import { useLocation } from 'react-router'
+import CartMenu from './CartMenu'
+import getDayData from '../CustomFunctions/getDayData'
+import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
+import getPopupData from '../CustomFunctions/getPopupData'
 
 
 
@@ -21,9 +22,9 @@ function Cart(props){
         cursor: isHomePage ? 'default':'pointer'
     }
     return(
-        <div className="cart" style={styleCursor}>
-           <p className="cart-day">{getDays()[1]}</p>
-           <p className="cart-day-number">{getDays()[0]}</p>
+        <div className="cart" style={styleCursor}  onClick={() => {if(!isHomePage){getPopupData(props.weeklyWeatherForecast,getDayData()[0])}}}>
+           <p className="cart-day">{getDayData()[1]}</p>
+           <p className="cart-day-number">{getDayData()[0]}</p>
            <img className="cart-icon" alt="" src={getWeatherIcon(props.weatherState, props.currentTemp)} />
            <p className="cart-city">{props.city}<span className="cart-city-country">{props.country}</span></p>
            <p className="cart-weather-state">{props.weatherState.charAt(0).toUpperCase()+props.weatherState.slice(1)}</p>
@@ -47,7 +48,8 @@ function Cart(props){
 }
 const mapStateToProps = state => {
     return {
-        isToggle:state.isToggle
+        isToggle:state.isToggle,
+        weeklyWeatherForecast:state.weeklyWeatherForecast
     }
 }
 export default connect(mapStateToProps)(Cart)
