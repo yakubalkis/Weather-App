@@ -14,10 +14,10 @@ function Popup(props){
     },[props.currentWeatherOfDay]) 
     
     const xIcon = props.isToggle ? xIconDark : xIconLight
-    
+    const theme = props.isToggle ? 'dark' : 'light'
 
     return (
-        <div className="popup">
+        <div className={`popup ${theme}-modeSidebar`}>
             <div className="popup-header">
                 <p>Weather Info from <b>September 12th</b></p>
                 <img alt=""  className="btn" src={xIcon} />
@@ -27,24 +27,24 @@ function Popup(props){
                 <div className="popup-info">
                     <div className="popup-info-part">
                         <img  alt=""src={windIconDark} />
-                        <div>
+                        <div className="popup-info-part-text" >
                             <h3>Wind</h3>
-                            <h4><b>Velocity:</b>2 km/h </h4>
-                            <h4><b>Direction:</b>333*</h4>
+                            <h4><b>Velocity: </b>2 km/h </h4>
+                            <h4><b>Direction: </b>333°</h4>
                         </div>
                     </div>
                     <div className="popup-info-part">
                         <img  alt="" src={rainIconDark}/>
-                        <div>
+                        <div className="popup-info-part-text">
                             <h3>Rain</h3>
-                            <h4><b>Percentage:</b>0 % </h4>
+                            <h4><b>Percentage: </b>0 % </h4>
                         </div>
                     </div>
                     <div className="popup-info-part">
                         <img  alt="" src={cloudsIconDark} />
-                        <div>
+                        <div className="popup-info-part-text last-part">
                             <h3>Clouds</h3>
-                            <h4><b>Percentage:</b>46 % </h4>
+                            <h4><b>Percentage: </b>46 % </h4>
                         </div>
                     </div>
                 </div>
