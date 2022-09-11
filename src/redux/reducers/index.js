@@ -18,7 +18,9 @@ const INITIAL_STATE = {
     selectedCitiesData:[],
     isCameBackHomePage:false,
     isShowMessageRemoved:false,
-    weeklyWeatherForecast:[]
+    weeklyWeatherForecast:[],
+    currentWeatherOfDay:{},
+    isShowPopup:false
 }
 
 export const reducer = ( state = INITIAL_STATE, action ) => {
@@ -86,6 +88,12 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isShowMessageRemoved:false}
         case 'GET_WEEKLY_WEATHER_FORECAST':
             return {...state, weeklyWeatherForecast: action.payload }
+        case 'GET_CURRENT_WEATHER_OF_DAY':
+            return {...state, currentWeatherOfDay:action.payload}
+        case 'SHOW_POPUP':
+            return {...state, isShowPopup:true}
+        case 'HIDE_POPUP':
+            return {...state, isShowPopup:false}
         default:
             return state
     }

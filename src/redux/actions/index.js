@@ -69,3 +69,12 @@ export const getWeeklyWeatherForecast = (idOfCity) => dispatch => {
     .get(`https://api.openweathermap.org/data/2.5/forecast?id=${idOfCity}&units=metric&appid=b074f4fee50925ca01787fc6c59090d6`)
     .then(response => dispatch({type: 'GET_WEEKLY_WEATHER_FORECAST', payload:response.data.list}))
 }
+export const getCurrentWeatherOfDay = (data) => dispatch => {
+    dispatch({type:'GET_CURRENT_WEATHER_OF_DAY',payload: data})
+}
+export const showPopup = () => dispatch => {
+    dispatch({type:'SHOW_POPUP'})
+}
+export const hidePopup = () => dispatch => {
+    dispatch({type:'HIDE_POPUP'})
+}
