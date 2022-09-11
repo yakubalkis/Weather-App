@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { getCurrentWeatherOfDay } from "../../redux/actions"
+import { getCurrentWeatherOfDay,showPopup } from "../../redux/actions"
 import getDaysNames from "../CustomFunctions/getDaysNames"
 import getPopupData from "../CustomFunctions/getPopupData"
 import getWeatherIcon from "../CustomFunctions/getWeatherIcon"
@@ -13,7 +13,7 @@ function DetailedSmallCart(props){
     }
 
     return(
-        <div className="cart cart-small" onClick={() => {handleClick()}}>
+        <div className="cart cart-small" onClick={() => {handleClick();props.showPopup()}}>
             <p className="cart-day">{getDaysNames(props.index)}</p>
             <p className="cart-day-number">{props.day}</p>
             <div className="descriptionText" data-hover={props.description.charAt(0).toUpperCase()+props.description.slice(1)}>
@@ -30,4 +30,4 @@ const mapStateToProps = state => {
         weeklyWeatherForecast:state.weeklyWeatherForecast
     }
 }
-export default connect(mapStateToProps,{getCurrentWeatherOfDay})(DetailedSmallCart)
+export default connect(mapStateToProps,{getCurrentWeatherOfDay, showPopup})(DetailedSmallCart)
