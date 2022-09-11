@@ -217,7 +217,7 @@ body{
 }
 .cart{
   width: 20rem;
-  height: 18em;
+  height: 18rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -393,4 +393,58 @@ body{
 .tempText:hover:before,.descriptionText:hover:before {
   opacity: 1;
   visibility: visible;
+}
+.popup{
+  width: 35rem;
+  height: 20.5rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  border-radius: 10px;
+}
+.popup-cart{
+  width: 17rem;
+  height: 15.5rem;
+}
+.popup-header{
+  margin-top: 5px;
+  margin-left: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+}
+.popup-header .btn{
+  margin-right: .5em;
+}
+.popup-main{
+  display: flex;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+.popup-info{
+  margin-left: 2em;
+  margin-top: -1em;
+}
+.popup-info-part{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.8em;
+}
+.popup-info-part-text{
+  margin-left:1em ;
+}
+.last-part{
+  transform: translateX(5px);
+}
+.popup-info-part-text h3{
+  font-size: 1.3em;
+  font-weight: 100;
+}
+.popup-info-part-text h4{
+  font-weight: 100;
+  transform: translateY(5px);
 }
