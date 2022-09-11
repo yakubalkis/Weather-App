@@ -1,19 +1,25 @@
-import getDays from "./getDays"
+import getDayData from "./getDayData"
 
 export default function getCurrentDescription(weeklyWeatherForecast){
 
-    const currentDay = getDays()[0]
-    const currentHour = getDays()[2]
+    const currentDay = getDayData()[0]
+    const currentHour = getDayData()[2]
     const daysWeather = weeklyWeatherForecast.filter((item) => Number(item.dt_txt[8]+item.dt_txt[9]) !== currentDay)
+    console.log(daysWeather)
     const descriptionsAndTemps = []
 
     for(let i = 1; i < daysWeather.length; i++){
         const hour1 = Number(daysWeather[i].dt_txt[11]+daysWeather[i].dt_txt[12])
         const hour2 = Number(daysWeather[i-1].dt_txt[11]+daysWeather[i-1].dt_txt[12])
-        
+
         if(hour1 >= currentHour && currentHour >= hour2 ){
             const description = hour1 - currentHour > currentHour - hour2 ? daysWeather[i-1].weather[0].description : daysWeather[i].weather[0].description
             const currentTemp = hour1 - currentHour > currentHour - hour2 ? daysWeather[i-1].main.temp : daysWeather[i].main.temp
+            descriptionsAndTemps.push({description,currentTemp})
+        }
+        else if(currentHour >= 21 && daysWeather[i].dt_txt[11]+daysWeather[i].dt_txt[12] === '00' && hour2 === 21 ){ // for 00 o'clock, specific situation
+            const description = 24 - currentHour > currentHour - 21 ? daysWeather[i-1].weather[0].description : daysWeather[i].weather[0].description
+            const currentTemp = 24 - currentHour > currentHour - 21 ? daysWeather[i-1].main.temp : daysWeather[i].main.temp
             descriptionsAndTemps.push({description,currentTemp})
         }
         else if(i === daysWeather.length -1){
@@ -22,7 +28,7 @@ export default function getCurrentDescription(weeklyWeatherForecast){
             descriptionsAndTemps.push({description,currentTemp})
         }
     } 
-    
+    console.log(descriptionsAndTemps)
    return descriptionsAndTemps
     
 }  
