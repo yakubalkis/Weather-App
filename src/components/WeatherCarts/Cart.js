@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router'
+import { getCurrentWeatherOfDay } from '../../redux/actions'
 import CartMenu from './CartMenu'
 import getDayData from '../CustomFunctions/getDayData'
 import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
 import getPopupData from '../CustomFunctions/getPopupData'
-
 
 
 function Cart(props){
@@ -13,16 +13,23 @@ function Cart(props){
     
     const [isHomePage, setIsHomePage]  = useState(false)
     const {pathname} = useLocation()
+
     useEffect(() => {
         if(pathname === '/'){
             setIsHomePage(true)
         }else { setIsHomePage(false)}
     },[pathname])
+
     const styleCursor = {
         cursor: isHomePage ? 'default':'pointer'
     }
+
+    function handleClick(){
+        props.getCurrentWeatherOfDay(getPopupData(props.weeklyWeatherForecast,getDayData()[0]))
+    }
+
     return(
-        <div className="cart" style={styleCursor}  onClick={() => {if(!isHomePage){getPopupData(props.weeklyWeatherForecast,getDayData()[0])}}}>
+        <div className="cart" style={styleCursor}  onClick={() => {if(!isHomePage){handleClick()}}}>
            <p className="cart-day">{getDayData()[1]}</p>
            <p className="cart-day-number">{getDayData()[0]}</p>
            <img className="cart-icon" alt="" src={getWeatherIcon(props.weatherState, props.currentTemp)} />
@@ -52,4 +59,4 @@ const mapStateToProps = state => {
         weeklyWeatherForecast:state.weeklyWeatherForecast
     }
 }
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps,{getCurrentWeatherOfDay})(Cart)
