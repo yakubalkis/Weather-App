@@ -1,6 +1,6 @@
 import React,{useState, useEffect, useRef} from "react";
 import { connect } from "react-redux";
-import { getDataOfWillBeRemovedCity,showSidebarDeleteCity,getViewedCityName,isUserComeBackHomePage } from "../../redux/actions";
+import { getDataOfWillBeRemovedCity,showSidebarDeleteCity,getViewedCityAndCountryName,isUserComeBackHomePage,getWeeklyWeatherForecast } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import iconMenu from '../img/icon-menu.png'
 
@@ -25,14 +25,16 @@ function CartMenu(props){
     
     return (
         <>
-           <img alt='' src={iconMenu} className='icon-menu'  onClick={() => {setIsShowMenu(true);props.getViewedCityName(props.cityName)}} />
+           <img alt='' src={iconMenu} className='icon-menu'  onClick={() => {setIsShowMenu(true);props.getViewedCityAndCountryName(props.cityName,props.countryName,props.idOfCity);}} />
            <div className='cart-menu' ref={menuRef} style={style}   >
             <Link to={`/${props.viewedCityName}`} style={{textDecoration:"none"}}>
                 <button 
                         style={style} 
                         className={`cart-menu-button button-top ${theme}-modeSidebar`} 
                         ref={menuRef}
-                        onClick={() =>{props.getDataOfWillBeRemovedCity(props.idOfCity, props.cityName, props.index); props.isUserComeBackHomePage()}} 
+                        onClick={() =>{props.getWeeklyWeatherForecast(props.idOfCity) ;
+                                       props.getDataOfWillBeRemovedCity(props.idOfCity, props.cityName, props.index); 
+                                       props.isUserComeBackHomePage()}} 
                         >
                             View Weather
                 </button>
@@ -55,4 +57,9 @@ const mapStateToProps = state => {
         viewedCityName:state.viewedCityName
     }
 }
-export default connect(mapStateToProps, {getDataOfWillBeRemovedCity,showSidebarDeleteCity,getViewedCityName,isUserComeBackHomePage})(CartMenu)
+export default connect(mapStateToProps,
+                                     {getDataOfWillBeRemovedCity,
+                                      showSidebarDeleteCity,
+                                      getViewedCityAndCountryName,
+                                      isUserComeBackHomePage,
+                                      getWeeklyWeatherForecast})(CartMenu)
