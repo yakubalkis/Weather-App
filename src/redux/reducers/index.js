@@ -9,17 +9,18 @@ const INITIAL_STATE = {
     infoOfSelectedCities:[],
     allWeatherForecasts:[],
     isTakenPositionFromApi:false,
-    cityId:1,
     data:[],
     isSituationDeletingCity:false,
     viewedCityName:'',
     viewedCountryName:'',
+    viewedCityId:1,
     weatherData:[],
     positionData:[],
     selectedCitiesData:[],
     isCameBackHomePage:false,
     isShowMessageRemoved:false,
     weeklyWeatherForecast:[],
+    isTakenWeeklyWeatherForecast:false,
     currentWeatherOfDay:{},
     isShowPopup:false
 }
@@ -76,7 +77,7 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isSituationDeletingCity:false}
             
         case 'GET_VIEWED_CITY_AND_COUNTRY_NAME':
-            return {...state, viewedCityName:action.payload[0],viewedCountryName:action.payload[1]}
+            return {...state, viewedCityName:action.payload[0],viewedCountryName:action.payload[1],viewedCityId:action.payload[2]}
         case 'GET_DATA_FROM_LOCAL_STORAGE':
             return {...state, 
                     weatherData:JSON.parse(localStorage.getItem('weatherData')),
@@ -87,8 +88,10 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isCameBackHomePage:true}
         case 'SET_IS_SHOW_MESSAGE_REMOVED':
             return {...state, isShowMessageRemoved:false}
+        case 'GET_WEEKLY_WEATHER_FORECAST_START':
+            return {...state, isTakenWeeklyWeatherForecast:false}
         case 'GET_WEEKLY_WEATHER_FORECAST':
-            return {...state, weeklyWeatherForecast: action.payload }
+            return {...state, weeklyWeatherForecast: action.payload,isTakenWeeklyWeatherForecast:true }
         case 'GET_CURRENT_WEATHER_OF_DAY':
             return {...state, currentWeatherOfDay:action.payload}
         case 'SHOW_POPUP':

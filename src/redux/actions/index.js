@@ -52,8 +52,8 @@ export const removeCity = ()  => dispatch => {
 export const setIsSituationDeletingCity = () =>  dispatch => {
     dispatch({type: 'SET_IS_DELETING_CITY'})
 }
-export const getViewedCityAndCountryName = (cityName,countryName) => dispatch => {
-    dispatch({type: 'GET_VIEWED_CITY_AND_COUNTRY_NAME', payload:[cityName, countryName]})
+export const getViewedCityAndCountryName = (cityName,countryName,cityId) => dispatch => {
+    dispatch({type: 'GET_VIEWED_CITY_AND_COUNTRY_NAME', payload:[cityName, countryName,cityId]})
 }
 export const getDataFromLocalStorage = () => dispatch => {
     dispatch({type: 'GET_DATA_FROM_LOCAL_STORAGE'})
@@ -65,6 +65,7 @@ export const setIsShowMessageRemoved = () => dispatch => {
     dispatch({type:'SET_IS_SHOW_MESSAGE_REMOVED'})
 }
 export const getWeeklyWeatherForecast = (idOfCity) => dispatch => {
+    dispatch({type:'GET_WEEKLY_WEATHER_FORECAST_START'})
     axios
     .get(`https://api.openweathermap.org/data/2.5/forecast?id=${idOfCity}&units=metric&appid=b074f4fee50925ca01787fc6c59090d6`)
     .then(response => dispatch({type: 'GET_WEEKLY_WEATHER_FORECAST', payload:response.data.list}))
