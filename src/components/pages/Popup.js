@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { hidePopup } from "../../redux/actions";
 import Cart from "../WeatherCarts/Cart";
@@ -17,9 +17,6 @@ function Popup(props){
     const monthNames = ["January", "February", "March", "April", "May", "June",
                         "July", "August", "September", "October", "November", "December"];
     
-    useEffect(() => {
-        console.log('Helooo')
-    },[props.currentWeatherOfDay])
     console.log(props.currentWeatherOfDay)
     for(let key in props.currentWeatherOfDay?.rain){ // because of rain object has '3h' key 
         if(props.currentWeatherOfDay?.rain.hasOwnProperty(key)){  
@@ -33,6 +30,7 @@ function Popup(props){
                     currentTemp={props.currentWeatherOfDay.main.temp} 
                     feelsLike={props.currentWeatherOfDay.main.feels_like}
                     humidity={props.currentWeatherOfDay.main.humidity}
+                    day={props.currentWeatherOfDay.dt_txt[8]+props.currentWeatherOfDay.dt_txt[9]}
                /> 
      : false
 
