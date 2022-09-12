@@ -13,6 +13,7 @@ const INITIAL_STATE = {
     data:[],
     isSituationDeletingCity:false,
     viewedCityName:'',
+    viewedCountryName:'',
     weatherData:[],
     positionData:[],
     selectedCitiesData:[],
@@ -74,8 +75,8 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
         case 'SET_IS_DELETING_CITY':
             return {...state, isSituationDeletingCity:false}
             
-        case 'GET_VIEWED_CITY_NAME':
-            return {...state, viewedCityName:action.payload}
+        case 'GET_VIEWED_CITY_AND_COUNTRY_NAME':
+            return {...state, viewedCityName:action.payload[0],viewedCountryName:action.payload[1]}
         case 'GET_DATA_FROM_LOCAL_STORAGE':
             return {...state, 
                     weatherData:JSON.parse(localStorage.getItem('weatherData')),
