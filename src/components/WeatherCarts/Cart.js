@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router'
-import { getCurrentWeatherOfDay } from '../../redux/actions'
+import { getCurrentWeatherOfDay, showPopup } from '../../redux/actions'
 import CartMenu from './CartMenu'
 import getDayData from '../CustomFunctions/getDayData'
 import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
 import getPopupData from '../CustomFunctions/getPopupData'
+import getDaysNames from  '../CustomFunctions/getDaysNames'
 
 
 function Cart(props){
 
     
+   
     const [isHomePage, setIsHomePage]  = useState(false)
     const {pathname} = useLocation()
 
@@ -21,7 +23,7 @@ function Cart(props){
     },[pathname])
 
     const styleCursor = {
-        cursor: isHomePage ? 'default':'pointer'
+        cursor: !isHomePage && !props.isShowPopup ? 'pointer':'default'
     }
 
     function handleClick(){
@@ -29,11 +31,11 @@ function Cart(props){
     }
 
     return(
-        <div className="cart" style={styleCursor}  onClick={() => {if(!isHomePage){handleClick()}}}>
-           <p className="cart-day">{getDayData()[1]}</p>
-           <p className="cart-day-number">{getDayData()[0]}</p>
+        <div className={"cart"} style={styleCursor}  onClick={() => {if(!isHomePage && !props.isShowPopup){handleClick();props.showPopup()}}}>
+           <p className="cart-day">{props.isShowPopup ?  getDaysNames(Number(props.day - getDayData()[0])-1) : getDayData()[1]}</p>
+           <p className="cart-day-number">{props.isShowPopup ? props.day  : getDayData()[0]}</p>
            <img className="cart-icon" alt="" src={getWeatherIcon(props.weatherState, props.currentTemp)} />
-           <p className="cart-city">{props.city}<span className="cart-city-country">{props.country}</span></p>
+           {!props.isShowPopup && <p className="cart-city">{props.city}<span className="cart-city-country">{props.country}</span></p>}
            <p className="cart-weather-state">{props.weatherState.charAt(0).toUpperCase()+props.weatherState.slice(1)}</p>
            <div className="cart-weather-info-div">
                 <div className="cart-weather-info">
@@ -49,14 +51,15 @@ function Cart(props){
                     <p className='temp'>{props.humidity}%</p>
                 </div>
            </div>
-          {isHomePage && <CartMenu idOfCity={props.idOfCity} cityName={props.city} index={props.index}  />}
+          {isHomePage && <CartMenu idOfCity={props.idOfCity} cityName={props.city} countryName={props.country} index={props.index}  />}
         </div>
     )
 }
 const mapStateToProps = state => {
     return {
         isToggle:state.isToggle,
-        weeklyWeatherForecast:state.weeklyWeatherForecast
+        weeklyWeatherForecast:state.weeklyWeatherForecast,
+        isShowPopup:state.isShowPopup
     }
 }
-export default connect(mapStateToProps,{getCurrentWeatherOfDay})(Cart)
+export default connect(mapStateToProps,{getCurrentWeatherOfDay, showPopup})(Cart)
