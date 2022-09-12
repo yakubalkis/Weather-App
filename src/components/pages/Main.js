@@ -10,7 +10,7 @@ import SideBarDeleteCity from "../WeatherCarts/SideBarDeleteCity";
 function Main(props){
 
     const theme = props.isToggle ? 'dark':'light'
-    
+    console.log(props.allWeatherForecasts)
    
     return (
             <>
@@ -23,9 +23,9 @@ function Main(props){
                         </button>
                     </div>
                 </main> 
-                <CityWeatherWeekly/>
+                {props.isTakenWeeklyWeatherForecast &&<CityWeatherWeekly/>}
                 <SideBarDeleteCity />
-                <Popup/>
+                {props.isShowPopup && <Popup/>}
             </>
     )
     
@@ -35,7 +35,9 @@ const mapStateToProps = state => {
         isToggle:state.isToggle,
         viewedCityName:state.viewedCityName,
         allWeatherForecasts:state.allWeatherForecasts,
-        infoOfSelectedCities:state.infoOfSelectedCities
+        infoOfSelectedCities:state.infoOfSelectedCities,
+        isShowPopup:state.isShowPopup,
+        isTakenWeeklyWeatherForecast:state.isTakenWeeklyWeatherForecast
     }
 }
 export default connect(mapStateToProps, {showSidebarDeleteCity,getDataOfWillBeRemovedCity})(Main)
