@@ -11,12 +11,10 @@ const INITIAL_STATE = {
     isTakenPositionFromApi:false,
     data:[],
     isSituationDeletingCity:false,
+    isSituationRemovingBrokenData:false,
     viewedCityName:'',
     viewedCountryName:'',
     viewedCityId:1,
-    weatherData:[],
-    positionData:[],
-    selectedCitiesData:[],
     isCameBackHomePage:false,
     isShowMessageRemoved:false,
     weeklyWeatherForecast:[],
@@ -51,7 +49,12 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, isTakenPositionFromApi:false}
         case 'GET_WEATHER_FORECAST':
             return {...state, allWeatherForecasts:[...state.allWeatherForecasts, action.payload]}
-
+        case 'REMOVE_BROKEN_DATA':
+            return{...state,
+                    isSituationRemovingBrokenData:true,
+                    selectedCities:state.selectedCities.slice(0,-1),
+                    infoOfSelectedCities:state.infoOfSelectedCities.slice(0,-1)
+                }
         case 'GET_COUNTRY':
             return {...state, selectedCountry:action.payload}
 
@@ -59,31 +62,26 @@ export const reducer = ( state = INITIAL_STATE, action ) => {
             return {...state, selectedCity:action.payload}
 
         case 'ADD_CITY':
-            return {...state, selectedCities:[...state.selectedCities, action.payload], isCameBackHomePage:false}
+            return {...state, selectedCities:[...state.selectedCities, action.payload], isCameBackHomePage:false, isSituationRemovingBrokenData:false}
 
         case 'GET_REMOVED_CITY_DATA':
             return {...state, data:action.payload}
 
         case 'REMOVE_CITY':
             return {...state,
-                isCameBackHomePage:false,
-                isSituationDeletingCity:true,
-                allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
-                selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
-                infoOfSelectedCities:state.infoOfSelectedCities.filter((item,i ) => i !== state.data[2]),
-                isShowMessageRemoved:true
+                    isCameBackHomePage:false,
+                    isSituationDeletingCity:true,
+                    allWeatherForecasts:state.allWeatherForecasts.filter(item => item.id !== state.data[0]),
+                    selectedCities:state.selectedCities.filter(city => city!==state.data[1]),
+                    infoOfSelectedCities:state.infoOfSelectedCities.filter((item,i ) => i !== state.data[2]),
+                    isShowMessageRemoved:true
             }
         case 'SET_IS_DELETING_CITY':
             return {...state, isSituationDeletingCity:false}
             
         case 'GET_VIEWED_CITY_AND_COUNTRY_NAME':
             return {...state, viewedCityName:action.payload[0],viewedCountryName:action.payload[1],viewedCityId:action.payload[2]}
-        case 'GET_DATA_FROM_LOCAL_STORAGE':
-            return {...state, 
-                    weatherData:JSON.parse(localStorage.getItem('weatherData')),
-                    positionData:JSON.parse(localStorage.getItem('positionData')),
-                    selectedCitiesData:JSON.parse(localStorage.getItem('selectedCities'))
-            }
+     
         case 'COME_BACK_HOMEPAGE':
             return {...state, isCameBackHomePage:true}
         case 'SET_IS_SHOW_MESSAGE_REMOVED':

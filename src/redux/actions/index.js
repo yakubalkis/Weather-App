@@ -42,7 +42,9 @@ export const getWeatherForecast = (lat,lon)  => dispatch => {
     .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=504192fcd7519634ad8589d58391b7c4`)
     .then(response => dispatch({type:'GET_WEATHER_FORECAST', payload:response.data}))
 }
-
+export const removeBrokenData = () => dispatch => {
+    dispatch({type:'REMOVE_BROKEN_DATA'})
+}
 export const getDataOfWillBeRemovedCity = (idOfCity, cityName, index) => dispatch => {
     dispatch({type: 'GET_REMOVED_CITY_DATA', payload:[idOfCity,cityName,index]})
 }
@@ -54,9 +56,6 @@ export const setIsSituationDeletingCity = () =>  dispatch => {
 }
 export const getViewedCityAndCountryName = (cityName,countryName,cityId) => dispatch => {
     dispatch({type: 'GET_VIEWED_CITY_AND_COUNTRY_NAME', payload:[cityName, countryName,cityId]})
-}
-export const getDataFromLocalStorage = () => dispatch => {
-    dispatch({type: 'GET_DATA_FROM_LOCAL_STORAGE'})
 }
 export const isUserComeBackHomePage = () => dispatch => {
     dispatch({type:'COME_BACK_HOMEPAGE'})
