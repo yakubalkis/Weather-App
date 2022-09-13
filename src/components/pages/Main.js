@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { showSidebarDeleteCity,getDataOfWillBeRemovedCity } from "../../redux/actions";
 import Popup from "./Popup";
 import CityWeatherWeekly from "./CityWeatherWeekly";
+import Shadow from "../Main-homepage/Shadow";
+
 
 
 import SideBarDeleteCity from "../WeatherCarts/SideBarDeleteCity";
@@ -23,7 +25,7 @@ function Main(props){
                         </button>
                     </div>
                 </main> 
-                {props.isTakenWeeklyWeatherForecast &&<CityWeatherWeekly/>}
+                {props.isTakenWeeklyWeatherForecast ? <CityWeatherWeekly/> : <><h2 alt="" className="loading-message" >Please Wait...</h2> <Shadow/></>}
                 <SideBarDeleteCity />
                 {props.isShowPopup && <Popup/>}
             </>
