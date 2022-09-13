@@ -1,6 +1,5 @@
 import React,{useState, useRef, useEffect} from "react"
 import { connect } from "react-redux"
-import { motion } from "framer-motion"
 import getMaxMinTemp from "../CustomFunctions/getMaxMinTemp"
 import getCurrentDescription from "../CustomFunctions/getCurrentDescription"
 import FirstWeatherCart from "./firstWeatherCart"
@@ -11,13 +10,14 @@ import iconDoubleRight from '../img/icon-double-right.png'
 function CityWeatherWeekly(props){
 
     const [width, setWidth] = useState(0)
+    const [drag, setDrag] = useState(0)
     const [tempDayData, setTempDayData] = useState([])
     const [currentWeatherStates, setCurrentWeatherStates] = useState([])
     const carouselRef = useRef()
 
     useEffect(() =>{
         setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
-    },[tempDayData]) 
+    },[tempDayData,drag]) 
     
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
@@ -25,9 +25,9 @@ function CityWeatherWeekly(props){
            setCurrentWeatherStates(getCurrentDescription(props.weeklyWeatherForecast))
         }
     },[props.weeklyWeatherForecast])
-    
-
-    const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => {
+   
+    console.log(tempDayData)
+    const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => { 
         return <DetailedSmallCart 
                     key={i} 
                     index={i}
@@ -39,19 +39,21 @@ function CityWeatherWeekly(props){
                 />
     }): false
    
-    console.log(props.weeklyWeatherForecast)
+
 
     return(
+        <>
             <div className="carts">
                 <FirstWeatherCart />
-                <motion.div ref={carouselRef} className="carousel">
-                    <motion.div drag="x" dragConstraints={{right:0,left:-width}} className="inner-carousel">
-                        <motion.div  className="inner-carousel" >{detailedSmallCarts}</motion.div>
-                    </motion.div>
-                    <img className="icon-double-left" alt="" src={iconDoubleLeft} />
-                    <img className="icon-double-right" alt="" src={iconDoubleRight} />
-                </motion.div>
+                <div ref={carouselRef} className="carousel">
+                    <div drag="x" dragConstraints={{right:0,left:-width}} style={{transform:`translateX(${drag})`}} className="inner-carousel">
+                        <div  className="inner-carousel" style={{transform:`translateX(${drag})`}}>{detailedSmallCarts}</div>
+                    </div>
+                    <img className="icon-double-left btn-left-right" alt="" src={iconDoubleLeft} onClick={() => {setDrag('0rem')}}/>
+                    <img className="icon-double-right btn-left-right" alt="" src={iconDoubleRight} onClick={() =>  {setDrag('-5.3rem')}} />
+                </div>
             </div>
+        </>
     )
     
 }
