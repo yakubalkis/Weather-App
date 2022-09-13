@@ -9,15 +9,13 @@ import iconDoubleRight from '../img/icon-double-right.png'
 
 function CityWeatherWeekly(props){
 
-    const [width, setWidth] = useState(0)
+    
     const [drag, setDrag] = useState(0)
     const [tempDayData, setTempDayData] = useState([])
     const [currentWeatherStates, setCurrentWeatherStates] = useState([])
     const carouselRef = useRef()
 
-    useEffect(() =>{
-        setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth)
-    },[tempDayData,drag]) 
+ 
     
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
@@ -46,7 +44,7 @@ function CityWeatherWeekly(props){
             <div className="carts">
                 <FirstWeatherCart />
                 <div ref={carouselRef} className="carousel">
-                    <div drag="x" dragConstraints={{right:0,left:-width}} style={{transform:`translateX(${drag})`}} className="inner-carousel">
+                    <div drag="x" style={{transform:`translateX(${drag})`}} className="inner-carousel">
                         <div  className="inner-carousel" style={{transform:`translateX(${drag})`}}>{detailedSmallCarts}</div>
                     </div>
                     <img className="icon-double-left btn-left-right" alt="" src={iconDoubleLeft} onClick={() => {setDrag('0rem')}}/>
