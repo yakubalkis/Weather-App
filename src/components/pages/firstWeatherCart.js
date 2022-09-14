@@ -20,6 +20,7 @@ function FirstWeatherCart(props){
                         currentTemp={currentWeatherData.main.temp}
                         feelsLike={currentWeatherData.main.feels_like}
                         humidity={currentWeatherData.main.humidity}
+                        day={currentDay}
                    />
                    
     return (
