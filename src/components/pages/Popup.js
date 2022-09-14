@@ -17,7 +17,7 @@ function Popup(props){
     const monthNames = ["January", "February", "March", "April", "May", "June",
                         "July", "August", "September", "October", "November", "December"];
     
-    console.log(props.currentWeatherOfDay)
+    
     for(let key in props.currentWeatherOfDay?.rain){ // because of rain object has '3h' key 
         if(props.currentWeatherOfDay?.rain.hasOwnProperty(key)){  
             rainPercentage  = props.currentWeatherOfDay?.rain[key]
@@ -26,13 +26,17 @@ function Popup(props){
 
     const cart = Object.keys(props.currentWeatherOfDay).length !== 0 ? 
        <Cart 
-                    weatherState={props.currentWeatherOfDay.weather[0].description}
-                    currentTemp={props.currentWeatherOfDay.main.temp} 
-                    feelsLike={props.currentWeatherOfDay.main.feels_like}
-                    humidity={props.currentWeatherOfDay.main.humidity}
-                    day={props.currentWeatherOfDay.dt_txt[8]+props.currentWeatherOfDay.dt_txt[9]}
-               /> 
+            weatherState={props.currentWeatherOfDay.weather[0].description}
+            currentTemp={props.currentWeatherOfDay.main.temp} 
+            feelsLike={props.currentWeatherOfDay.main.feels_like}
+            humidity={props.currentWeatherOfDay.main.humidity}
+            day={props.currentWeatherOfDay.dt_txt[8]+props.currentWeatherOfDay.dt_txt[9]}
+            city={props.data[1]}
+            className={'popup-cart'}
+        /> 
      : false
+
+    
 
     return (
         <>
@@ -77,7 +81,8 @@ const mapStateToProps = state => {
     return{
         currentWeatherOfDay:state.currentWeatherOfDay,
         isToggle:state.isToggle,
-        isShowPopup:state.isShowPopup
+        isShowPopup:state.isShowPopup,
+        data:state.data
     }
 }
 export default connect(mapStateToProps,{hidePopup})(Popup)
