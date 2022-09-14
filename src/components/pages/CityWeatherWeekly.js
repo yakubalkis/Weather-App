@@ -1,21 +1,24 @@
-import React,{useState, useRef, useEffect} from "react"
+import React,{useState, useEffect} from "react"
+import { Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore,{Navigation, Pagination} from 'swiper'
+import 'swiper/css';
+import 'swiper/css/bundle'
 import { connect } from "react-redux"
 import getMaxMinTemp from "../CustomFunctions/getMaxMinTemp"
 import getCurrentDescription from "../CustomFunctions/getCurrentDescription"
 import FirstWeatherCart from "./firstWeatherCart"
 import DetailedSmallCart from "./detailedSmallCart"
-import iconDoubleLeft from '../img/icon-double-left.png'
-import iconDoubleRight from '../img/icon-double-right.png'
 
+
+SwiperCore.use([Navigation, Pagination])
 function CityWeatherWeekly(props){
 
     
-    const [drag, setDrag] = useState(0)
     const [tempDayData, setTempDayData] = useState([])
     const [currentWeatherStates, setCurrentWeatherStates] = useState([])
-    const carouselRef = useRef()
+    const slides = []
+    
 
- 
     
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
@@ -24,32 +27,38 @@ function CityWeatherWeekly(props){
         }
     },[props.weeklyWeatherForecast])
    
-    console.log(tempDayData)
-    const detailedSmallCarts = tempDayData.length > 0 ? tempDayData.map((item,i) => { 
-        return <DetailedSmallCart 
-                    key={i} 
-                    index={i}
-                    day={item.day} 
-                    maxTemp={item.maxTemp}  
-                    minTemp={item.minTemp} 
-                    description={currentWeatherStates[i].description}
-                    currentTemp={currentWeatherStates[i].currentTemp} 
-                />
-    }): false
-   
 
+    for(let i = 0; i < tempDayData.length; i++){
+        slides.push(
+            <SwiperSlide key={`slide-${i}`} tag="li" style={{listStyle:'none'}} >
+                <DetailedSmallCart 
+                       key={i} 
+                       index={i}
+                       day={tempDayData[i].day} 
+                       maxTemp={tempDayData[i].maxTemp}  
+                       minTemp={tempDayData[i].minTemp} 
+                       description={currentWeatherStates[i].description}
+                       currentTemp={currentWeatherStates[i].currentTemp} 
+                />
+            </SwiperSlide>
+        )
+    }
 
     return(
         <>
             <div className="carts">
                 <FirstWeatherCart />
-                <div ref={carouselRef} className="carousel">
-                    <div drag="x" style={{transform:`translateX(${drag})`}} className="inner-carousel">
-                        <div  className="inner-carousel" style={{transform:`translateX(${drag})`}}>{detailedSmallCarts}</div>
-                    </div>
-                    <img className="icon-double-left btn-left-right" alt="" src={iconDoubleLeft} onClick={() => {setDrag('0rem')}}/>
-                    <img className="icon-double-right btn-left-right" alt="" src={iconDoubleRight} onClick={() =>  {setDrag('-5.3rem')}} />
-                </div>
+                <Swiper
+                    tag="section"
+                    wrapperTag="ul"
+                    className='swiper'
+                    navigation
+                    pagination
+                    spaceBetween={0}
+                    slidesPerView={4}
+                    >
+                    {slides}
+                </Swiper>
             </div>
         </>
     )
@@ -63,3 +72,4 @@ const mapStateToProps = state => {
     }
 }
 export default connect(mapStateToProps)(CityWeatherWeekly)
+
