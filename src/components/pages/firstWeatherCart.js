@@ -25,9 +25,7 @@ function FirstWeatherCart(props){
                    
     return (
         <>
-            <div onClick={() => {console.log('hello')}} >
-                 {firstWeatherCart}
-            </div>
+         {firstWeatherCart}
         </>
     )
 
