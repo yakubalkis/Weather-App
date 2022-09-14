@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getWeatherForecast,getPositionOfCity,setIsTakenPositionFromApi,removeBrokenData} from "../../redux/actions";
 import Cart from "./Cart";
@@ -21,14 +21,11 @@ useEffect(() => {
 },[props.selectedCities])
   
 
-console.log(props.selectedCities)
-console.log(props.infoOfSelectedCities)
-console.log(props.allWeatherForecasts)
+
 
 useEffect(() => { 
     const index = props.infoOfSelectedCities.length-1
     
-   
     if(props.isTakenPositionFromApi===true && props.infoOfSelectedCities[index]  !== undefined){
         const lat = props.infoOfSelectedCities[index]?.lat
         const lon = props.infoOfSelectedCities[index]?.lon
