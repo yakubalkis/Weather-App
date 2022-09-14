@@ -5,6 +5,7 @@ import iconOvercastClouds from '../img/icon-overcast-clouds.png'
 import iconScatteredClouds from '../img/icon-scattered-clouds.png'
 import iconBrokenClouds from '../img/broken-clouds.png'
 import iconLightRain from '../img/icon-light-rain.png'
+import intenseRain  from '../img/icon-intensity-rain.png'
 
 export default function getWeatherIcon(weatherState, temp){
     if(weatherState==='few clouds'){
@@ -18,6 +19,7 @@ export default function getWeatherIcon(weatherState, temp){
     else if(weatherState==='scattered clouds'){return iconScatteredClouds}
     else if(weatherState==='overcast clouds'){return iconOvercastClouds}
     else if(weatherState==='broken clouds'){return iconBrokenClouds}
-    else if(weatherState==='light rain' || 'heavy intensity rain' || 'moderate rain'){return iconLightRain}
+    else if(weatherState==='light rain'  || 'moderate rain' || 'shower rain'){return iconLightRain}
+    else if(weatherState==='heavy intensity rain'){return intenseRain }
     else return iconSun
 }
