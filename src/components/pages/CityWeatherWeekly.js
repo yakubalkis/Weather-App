@@ -17,8 +17,16 @@ function CityWeatherWeekly(props){
     const [tempDayData, setTempDayData] = useState([])
     const [currentWeatherStates, setCurrentWeatherStates] = useState([])
     const slides = []
+    const [width, setWidth]   = useState(window.innerWidth)
     
-
+    
+    const updateDimensions = () => {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener("resize", updateDimensions);
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, []);
     
     useEffect(() => {
         if(props.weeklyWeatherForecast.length !== 0){
@@ -55,7 +63,7 @@ function CityWeatherWeekly(props){
                     navigation
                     pagination
                     spaceBetween={0}
-                    slidesPerView={4}
+                    slidesPerView={width > 1045 ? 4 : width > 885 ? 3 : width > 550 ? 2 : 1}
                     >
                     {slides}
                 </Swiper>
