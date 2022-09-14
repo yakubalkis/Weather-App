@@ -1,19 +1,19 @@
-import React,{ useCallback, useEffect, useRef, useState} from "react";
+import React,{ useEffect, useState} from "react";
 import { connect } from "react-redux";
 import Shadow from "./Shadow";
+import OptionCountry from "./optionCountry";
+import OptionCity from "./optionCity";
 import { hideSidebarAddCity, getCountries, getCountry, getCity,  addCity, getPositionOfCity, setIsSituationDeletingCity } from "../../redux/actions";
 import xIconDark from '../img/x-iconDark.png'
 import xIconLight from '../img/x-iconLight.png'
 import cancelIconDark from '../img/cancelDark.png'
 import cancelIconLight from '../img/cancelLight.png'
 import saveIcon from '../img/icon-save.png'
-import OptionCountry from "./optionCountry";
-import OptionCity from "./optionCity";
 
 
 
 function SideBar(props){
-    
+
     const [isDisableSelectCountry, setIsDisableSelectCountry ] = useState(true)
     const [isDisableSelectCity, setIsDisableSelectCity] = useState(true)
     const theme = props.isToggle ? 'dark':'light'
@@ -118,8 +118,7 @@ const mapStateToProps = state =>{
         selectedCountry:state.selectedCountry,
         selectedCity:state.selectedCity,
         selectedCities:state.selectedCities,
-        infoOfSelectedCities:state.infoOfSelectedCities,
-        removedCitiesNames:state.removedCitiesNames
+        infoOfSelectedCities:state.infoOfSelectedCities
     }
 }
 export default connect(mapStateToProps, 
