@@ -207,15 +207,16 @@ body{
   background-color: rgb(0, 255, 0);
 }
 .carts{
-  width: 75%;
+  width: 65rem;
   margin: 0 auto;
   padding-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   padding-bottom: 2rem;
+  border: 1px solid green;
 }
-.cart{
+.cart, .popup-cart{
   width: 20rem;
   height: 18rem;
   display: flex;
@@ -229,10 +230,11 @@ body{
   background-repeat: no-repeat;
   border-radius: 15px;
   color: var(--white);
-  transition: all 0.5s;
+  transition: all 0.3s;
   position: relative;
+  margin-left: 1em;
 }
-.cart:hover{
+.cart:hover, .popup-cart:hover{
   background-image: url('./components/img/cart-background-hover.jpeg');
 }
 .cart-day{
@@ -327,28 +329,28 @@ body{
   background-color: rgba(46, 253, 46,0.7);
   color: var(--backgroundDarkColor);
 }
-.carousel{
- overflow: hidden;
- width: 42rem;
- position: relative;
+.swiper{
+  overflow: hidden;
+  width: 42rem;
+  border: 1px solid red;
+  height: 16.5rem;
 }
+
 .icon-double-left{
   position: absolute;
   top: 34%;
+  left: 2px;
 }
 .icon-double-right{
   position: absolute;
   top: 30%;
-  right: 0;
-}
-.inner-carousel{
-  display: flex;
-  gap: 10px;
+  right: 2px;
 }
 .cart-small{
   width: 10rem;
   height: 15rem;
   cursor: pointer;
+  margin-left: 5px;
 }
 .cart-small:active{
   cursor: grabbing;
@@ -395,7 +397,7 @@ body{
   visibility: visible;
 }
 .popup{
-  width: 35rem;
+  width: 37rem;
   height: 20.5rem;
   display: flex;
   flex-direction: column;
@@ -404,10 +406,12 @@ body{
   right: 50%;
   transform: translate(50%,-50%);
   border-radius: 10px;
+  z-index: 15;
 }
 .popup-cart{
-  width: 17rem;
-  height: 15.5rem;
+  width: 15rem;
+  height: 15.8rem;
+  margin-left: 2.2em;
 }
 .popup-header{
   margin-top: 5px;
@@ -426,7 +430,7 @@ body{
   margin-left: 1em;
 }
 .popup-info{
-  margin-left: 2em;
+  margin-left: 5em;
   margin-top: -1em;
 }
 .popup-info-part{
@@ -435,10 +439,8 @@ body{
   margin-top: 1.8em;
 }
 .popup-info-part-text{
+  width: 10em;
   margin-left:1em ;
-}
-.last-part{
-  transform: translateX(5px);
 }
 .popup-info-part-text h3{
   font-size: 1.3em;
@@ -447,4 +449,189 @@ body{
 .popup-info-part-text h4{
   font-weight: 100;
   transform: translateY(5px);
+}
+.btn-left-right{
+  border-radius: 50%;
+  cursor: pointer;
+} 
+.btn-left-right:hover{
+  background-color: rgb(32, 30, 30);
+}
+.loading-message{
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%,-50%);
+  color: white;
+  z-index: 15;
+}
+@media only screen and (max-width:1045px){
+  .carts{
+    width: 55rem;
+  }
+  .cart{
+    width: 17rem;
+    height: 17rem;
+    margin-left: .7em;
+  }
+  .cart-menu{
+    margin-right: -14rem;
+  }
+  .swiper{
+    width: 33rem;
+    height: 16rem;
+   transform: translate(-20px);
+  }
+  .cart-small{
+    width: 10rem;
+    height: 14rem;
+    margin-left:.5em ;
+  }
+  .cart-small .cart-day-number{
+    transform: translateY(-20px);
+  }
+  .cart-small .cart-icon{
+    transform: translateY(-17px);
+  }
+  .popup-main{
+    margin-left: 0em;
+  }
+}
+@media only screen and (max-width:885px){
+  .main-elements{
+    padding-left: 6em;
+  }
+  .carts{
+    width: 43rem;
+  }
+  .cart{
+    width: 20rem;
+    height: 18rem;
+    margin-left: .7em;
+  }
+  .cart-menu{
+    width: 8rem;
+    margin-right: -6rem;
+  }
+  .cart-menu-button{
+    font-size: 12px;  
+  }
+  .swiper{
+    width: 20rem;
+    height: 16rem;
+  }
+  .cart-small{
+    width: 9rem;
+    height: 14rem;
+    margin-left:.5em ;
+  }
+  .popup-main{
+    margin-left: 1.5em;
+  }
+}
+@media only screen and (max-width:690px){
+  .header h2{
+    margin-left: 2em;
+  }
+  .carts{
+    width: 34rem;
+  }
+  .cart{
+    width: 16rem;
+    height: 16rem;
+    margin-left: .5em;
+  }
+  .cart-menu{
+    margin-right: -4rem;
+  }
+  .cart-menu-button{
+    font-size: 11px;  
+  }
+  .swiper{
+    width: 16rem;
+    height: 14rem;
+    transform: translateX(-15px);
+  }
+  .cart-small{
+    width: 7rem;
+    height: 12.5rem;
+    margin-left:.5em ;
+  }
+  .cart-small .cart-day{
+    transform: translateY(-2px);
+  }
+  .cart-small .cart-day-number{
+    transform: translateY(-15px);
+  }
+  .popup-main{
+    margin-left: -1em;
+  }
+}
+@media only screen and (max-width:550px){
+  .main-elements{
+    padding-left: 3.3em;
+  }
+  .carts{
+    width: 28rem;
+  }
+  .cart{
+    width: 13rem;
+    height: 12rem;
+    margin-left: .5em;
+  }
+  .cart-menu{
+    margin-right: -4rem;
+  }
+  .cart-menu-button{
+    font-size: 11px;  
+  }
+  .cart-menu{
+    width: 6rem;
+    margin-top: 2.2rem;
+  }
+  .cart-menu-button{
+    padding-right: 2rem;
+    height: 1.9rem;
+    font-size: 8px;
+  }
+  .cart-weather-info-div{
+    margin-bottom: 10px;
+  }
+  .cart-weather-temp-info{
+    font-size: 0.7em;
+  }
+  .cart .cart-day{
+    transform: translateY(-10px);
+  }
+  .icon-menu{
+    top: 5px;
+  }
+  .cart-weather-state{
+    transform: translateY(-1px);
+  }
+  .swiper{
+    width: 9rem;
+    height: 12rem;
+    transform: translateX(-25px);
+  }
+  .cart-small{
+    width: 8rem;
+    height: 11rem;
+    margin-left:.5em ;
+  }
+  .popup{
+    width: 28rem;
+    height: 17rem;
+  }
+  .popup-cart{
+    width: 13rem;
+    height: 12rem;
+  }
+  .popup-info{
+    margin-left: .7em;
+    margin-top: -1em;
+  }
+  .popup-info-part{
+    margin-top: 1em;
+  }
 }
