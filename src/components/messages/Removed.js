@@ -9,11 +9,11 @@ function RemovedMessage(props){
         if(props.isShowMessageRemoved===true){
             setTimeout(() => {
                 props.setIsShowMessageRemoved()
-            },2000)
+            },1000)
         }
     },[props.isShowMessageRemoved])
 
-    const style = {visibility: props.isShowMessageRemoved ? 'visible' : 'hidden',transition: `all ${1}s`}
+    const style = {visibility: props.isShowMessageRemoved ? 'visible' : 'hidden'}
     return(
         <div className="message message-removed" style={style}>
             City Removed Successfully!
