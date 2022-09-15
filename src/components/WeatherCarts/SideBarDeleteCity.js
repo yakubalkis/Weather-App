@@ -31,9 +31,9 @@ function SideBarDeleteCity(props){
                         <p className="sidebar-mid-text-bold">{props.viewedCityName}?</p>
                     </div>
                 </div>
-                <div className="sidebar-footer" >
+                <div className="sidebar-footer delete-city-footer" >
                         <button 
-                            className={`btn ${theme}-mode`}
+                            className={`btn ${theme}-mode btn-cancel`}
                             onClick={() => props.hideSidebarDeleteCity()}
                                 >
                                 <img alt="" className="btn-img" src={cancelIcon} />

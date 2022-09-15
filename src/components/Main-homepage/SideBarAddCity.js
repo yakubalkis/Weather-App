@@ -87,7 +87,7 @@ function SideBar(props){
                 </div>
                 <div className="sidebar-footer" >
                     <button 
-                        className={`btn ${theme}-mode`}
+                        className={`btn ${theme}-mode btn-cancel`}
                         onClick={() => {props.hideSidebarAddCity(); setIsDisableSelectCountry(true)}}
                             >
                             <img alt="" className="btn-img" src={cancelIcon} />
