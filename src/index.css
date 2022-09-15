@@ -627,7 +627,7 @@ body{
   }
   .popup{
     width: 20rem;
-    height: 27rem;
+    height: 29rem;
   }
   .popup-main{flex-direction: column; }
   .popup-cart{
