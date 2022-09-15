@@ -645,11 +645,14 @@ body{
   .popup-info-part-text{ font-size: .8em; }
 }
 @media only screen and (max-width:375px){
+  .header h2{
+    margin-left: .8em;
+  }
   .sidebar-footer{
     right: 3rem;
   }
   .popup{
-    height: 28.5rem;
+    height: 29rem;
   }
   .popup-info-part{
     margin-top: .7em;
@@ -669,7 +672,7 @@ body{
   .delete-city-footer{
     right: 1.5rem;
   }
-  .header h2{ margin-left: 1.2em; }
+  .header h2{ margin-left: .8em; }
   .header button{ margin-right: 1.2em; }
   .carts{ width: 15rem; }
   .cart{
@@ -698,8 +701,12 @@ body{
     margin-left: 28px;
   }
   .popup-info-part{
-    margin-top: .5em;
+    margin-top: .7em;
     transform: translateX(-35px);
+  }
+  .popup-info-part-text{
+    margin-top: .3em;
+    transform: translateX(0px);
   }
   .popup-header p{
     font-size: .9em;
