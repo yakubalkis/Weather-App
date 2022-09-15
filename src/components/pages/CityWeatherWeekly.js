@@ -34,8 +34,8 @@ function CityWeatherWeekly(props){
            setCurrentWeatherStates(getCurrentDescription(props.weeklyWeatherForecast))
         }
     },[props.weeklyWeatherForecast])
-   
-
+    console.log(tempDayData)
+    console.log(currentWeatherStates)
     for(let i = 0; i < tempDayData.length; i++){
         slides.push(
             <SwiperSlide key={`slide-${i}`} tag="li" style={{listStyle:'none'}} >
@@ -45,8 +45,10 @@ function CityWeatherWeekly(props){
                        day={tempDayData[i].day} 
                        maxTemp={tempDayData[i].maxTemp}  
                        minTemp={tempDayData[i].minTemp} 
-                       description={currentWeatherStates[i].description}
-                       currentTemp={currentWeatherStates[i].currentTemp} 
+                       description={currentWeatherStates[i].weather[0].description}
+                       currentTemp={currentWeatherStates[i].main.temp}
+                       weatherData={currentWeatherStates[i]}
+                       monthNumber={Number(currentWeatherStates[i].dt_txt[5]+currentWeatherStates[i].dt_txt[6])} 
                 />
             </SwiperSlide>
         )
