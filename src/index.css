@@ -648,6 +648,17 @@ body{
   .sidebar-footer{
     right: 3rem;
   }
+  .popup{
+    height: 28.5rem;
+  }
+  .popup-info-part{
+    margin-top: .7em;
+    transform: translateX(-45px);
+  }
+  .popup-info-part-text{
+    margin-top: .3em;
+    transform: translateX(-20px);
+  }
 }
 @media only screen and (max-width:320px){
   .main-elements{ padding-left: 2.5em; }
