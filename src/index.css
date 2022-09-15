@@ -703,9 +703,13 @@ body{
   }
   .popup{
     width: 15rem;
+    height: 30rem;
   }
   .popup-cart{
     margin-left: 28px;
+  }
+  .popup-info{
+    margin-top: .5em;
   }
   .popup-info-part{
     margin-top: .7em;
@@ -716,6 +720,12 @@ body{
     transform: translateX(0px);
   }
   .popup-header p{
+    font-size: .9em;
+  }
+  .popup-info-part-text h3{
+    font-size: 1em;
+  }
+  .popup-info-part-text h4{
     font-size: .9em;
   }
 }
