@@ -22,7 +22,7 @@ function Main(props){
                         </button>
                     </div>
                 </main> 
-                {props.isTakenWeeklyWeatherForecast ? <CityWeatherWeekly/> : <><h2 alt="" className="loading-message" >Please Wait...</h2> <Shadow/></>}
+                {props.isTakenWeeklyWeatherForecast ? <CityWeatherWeekly/> : <><Shadow/></>}
                 <SideBarDeleteCity />
                 {props.isShowPopup && <Popup/>}
             </>
