@@ -332,7 +332,6 @@ body{
 .swiper{
   overflow: hidden;
   width: 42rem;
-  border: 1px solid red;
   height: 16.5rem;
 }
 
@@ -457,26 +456,14 @@ body{
 .btn-left-right:hover{
   background-color: rgb(32, 30, 30);
 }
-.loading-message{
-  position: fixed;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%,-50%);
-  color: white;
-  z-index: 15;
-}
 @media only screen and (max-width:1045px){
-  .carts{
-    width: 55rem;
-  }
+  .carts{ width: 55rem; }
   .cart{
     width: 17rem;
     height: 17rem;
     margin-left: .7em;
   }
-  .cart-menu{
-    margin-right: -14rem;
-  }
+  .cart-menu{ margin-right: -14rem; }
   .swiper{
     width: 33rem;
     height: 16rem;
@@ -487,23 +474,13 @@ body{
     height: 14rem;
     margin-left:.5em ;
   }
-  .cart-small .cart-day-number{
-    transform: translateY(-20px);
-  }
-  .cart-small .cart-icon{
-    transform: translateY(-17px);
-  }
-  .popup-main{
-    margin-left: 0em;
-  }
+  .cart-small .cart-day-number{ transform: translateY(-20px); }
+  .cart-small .cart-icon{ transform: translateY(-17px); }
+  .popup-main{ margin-left: 0em; }
 }
 @media only screen and (max-width:885px){
-  .main-elements{
-    padding-left: 6em;
-  }
-  .carts{
-    width: 43rem;
-  }
+  .main-elements{ padding-left: 6em; }
+  .carts{ width: 43rem; }
   .cart{
     width: 20rem;
     height: 18rem;
@@ -513,9 +490,7 @@ body{
     width: 8rem;
     margin-right: -6rem;
   }
-  .cart-menu-button{
-    font-size: 12px;  
-  }
+  .cart-menu-button{ font-size: 12px; }
   .swiper{
     width: 20rem;
     height: 16rem;
@@ -525,28 +500,18 @@ body{
     height: 14rem;
     margin-left:.5em ;
   }
-  .popup-main{
-    margin-left: 1.5em;
-  }
+  .popup-main{ margin-left: 1.5em; }
 }
 @media only screen and (max-width:690px){
-  .header h2{
-    margin-left: 2em;
-  }
-  .carts{
-    width: 34rem;
-  }
+  .header h2{ margin-left: 2em; }
+  .carts{ width: 34rem; }
   .cart{
     width: 16rem;
     height: 16rem;
     margin-left: .5em;
   }
-  .cart-menu{
-    margin-right: -4rem;
-  }
-  .cart-menu-button{
-    font-size: 11px;  
-  }
+  .cart-menu{ margin-right: -4rem; }
+  .cart-menu-button{ font-size: 11px; }
   .swiper{
     width: 16rem;
     height: 14rem;
@@ -557,34 +522,20 @@ body{
     height: 12.5rem;
     margin-left:.5em ;
   }
-  .cart-small .cart-day{
-    transform: translateY(-2px);
-  }
-  .cart-small .cart-day-number{
-    transform: translateY(-15px);
-  }
-  .popup-main{
-    margin-left: -1em;
-  }
+  .cart-small .cart-day{ transform: translateY(-2px); }
+  .cart-small .cart-day-number{ transform: translateY(-15px); }
+  .popup-main{ margin-left: -1em; }
 }
 @media only screen and (max-width:550px){
-  .main-elements{
-    padding-left: 3.3em;
-  }
-  .carts{
-    width: 28rem;
-  }
+  .main-elements{ padding-left: 3.3em; }
+  .carts{ width: 28rem; }
   .cart{
     width: 13rem;
     height: 12rem;
     margin-left: .5em;
   }
-  .cart-menu{
-    margin-right: -4rem;
-  }
-  .cart-menu-button{
-    font-size: 11px;  
-  }
+  .cart-menu{ margin-right: -4rem; }
+  .cart-menu-button{ font-size: 11px; }
   .cart-menu{
     width: 6rem;
     margin-top: 2.2rem;
@@ -594,21 +545,11 @@ body{
     height: 1.9rem;
     font-size: 8px;
   }
-  .cart-weather-info-div{
-    margin-bottom: 10px;
-  }
-  .cart-weather-temp-info{
-    font-size: 0.7em;
-  }
-  .cart .cart-day{
-    transform: translateY(-10px);
-  }
-  .icon-menu{
-    top: 5px;
-  }
-  .cart-weather-state{
-    transform: translateY(-1px);
-  }
+  .cart-weather-info-div{ margin-bottom: 10px; }
+  .cart-weather-temp-info{ font-size: 0.7em; }
+  .cart .cart-day{ transform: translateY(-10px); }
+  .icon-menu{ top: 5px; }
+  .cart-weather-state{ transform: translateY(-1px); }
   .swiper{
     width: 9rem;
     height: 12rem;
@@ -631,7 +572,126 @@ body{
     margin-left: .7em;
     margin-top: -1em;
   }
+  .popup-info-part{ margin-top: 1em; }
+}
+@media only screen and (max-width:450px){
+  .main-elements h1{ font-size: 1.5em; }
+  .main-elements h2{
+    font-size: 1em;
+    margin-top: .5em;
+  }
+  .carts{
+    width: 20rem;
+    gap: 10px;
+  }
+  .cart{
+    width: 19rem;
+    height: 17rem;
+    margin-left: .5em;
+  }
+  .sidebar{ width: 100%; }
+  .sidebar-elements{ width: 90%; }
+  .sidebar-select {
+    width: 90%;
+    transform: translateX(-5px);
+    margin-left: 5px;
+  }
+  .sidebar-footer{
+    display: flex;
+    flex-direction: row;
+    right: 4rem;
+  }
+  .sidebar-footer button{
+    height: 35px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .sidebar-footer .btn-cancel{ transform: translateX(35px); }
+  .cart-menu{
+    margin-right: -6rem;
+    width: 8rem;
+  }
+  .cart-menu-button{ font-size: 11px; }
+  .cart-weather-temp-info{ font-size: 0.9em; }
+  .cart .cart-day{ transform: translateY(-5px); }
+  .cart-weather-state{ transform: translateY(-10px); }
+  .swiper{
+    width: 10rem;
+    height: 14.5rem;
+    transform: translateX(0px);
+  }
+  .cart-small{
+    width: 9rem;
+    height: 13rem;
+  }
+  .popup{
+    width: 20rem;
+    height: 27rem;
+  }
+  .popup-main{flex-direction: column; }
+  .popup-cart{
+   margin-left: 68px;
+    height: 12.9rem;
+  }
+  .popup-info{
+    margin-left: 4em;
+    margin-top: -.4em;
+  }
   .popup-info-part{
-    margin-top: 1em;
+    margin-top: .5em;
+    transform: translateX(-55px);
+  }
+  .popup-info-part-text{ font-size: .8em; }
+}
+@media only screen and (max-width:375px){
+  .sidebar-footer{
+    right: 3rem;
+  }
+}
+@media only screen and (max-width:320px){
+  .main-elements{ padding-left: 2.5em; }
+  .sidebar-footer{
+    right: 2.5rem;
+  }
+  .sidebar-footer .btn-cancel{ transform: translateX(45px); }
+  .delete-city-footer{
+    right: 1.5rem;
+  }
+  .header h2{ margin-left: 1.2em; }
+  .header button{ margin-right: 1.2em; }
+  .carts{ width: 15rem; }
+  .cart{
+    width: 14rem;
+    height: 16rem;
+    margin-left: .5em;
+  }
+  .cart-menu{
+    margin-right: -5rem;
+    width: 7rem;
+  }
+  .cart-weather-temp-info{ font-size: 0.8em; }
+  .swiper{
+    width: 10rem;
+    height: 14.5rem;
+    transform: translateX(0px);
+  }
+  .cart-small{
+    width: 9rem;
+    height: 13rem;
+  }
+  .popup{
+    width: 15rem;
+  }
+  .popup-cart{
+    margin-left: 28px;
+  }
+  .popup-info-part{
+    margin-top: .5em;
+    transform: translateX(-35px);
+  }
+  .popup-header p{
+    font-size: .9em;
   }
 }
