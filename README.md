@@ -1,5 +1,6 @@
 # Weather-App
 This project has been made by using React, pure CSS, HTML and Redux. It presents the weather forecasts of the cities selected by the user to the user.  </br>
+<b>Live Link:</b> https://weather-app-yakubalks.netlify.app/
 # Overview
 ##  Requirements
 • By default, gives the current weather forecast of Berlin. </br>
