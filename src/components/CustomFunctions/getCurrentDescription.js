@@ -7,7 +7,7 @@ export default function getCurrentDescription(weeklyWeatherForecast){
     const daysWeather = weeklyWeatherForecast.filter((item) => Number(item.dt_txt[8]+item.dt_txt[9]) !== currentDay)
   
     const weatherData = []
-    console.log(daysWeather)
+   
     for(let i = 1; i < daysWeather.length; i++){  
         const hour1 = Number(daysWeather[i].dt_txt[11]+daysWeather[i].dt_txt[12])
         const hour2 = Number(daysWeather[i-1].dt_txt[11]+daysWeather[i-1].dt_txt[12])
@@ -27,7 +27,6 @@ export default function getCurrentDescription(weeklyWeatherForecast){
             weatherData.push(data)
         }
     } 
-    console.log(weatherData)
    return weatherData
     
 }  
