@@ -21,6 +21,14 @@ export default function getMaxMinTemp(weeklyWeatherForecast){
                  minTemp= daysWeather[i].main.temp_min <= daysWeather[i-1].main.temp_min ? minTemp <= daysWeather[i].main.temp_min ? minTemp : daysWeather[i].main.temp_min : minTemp <= daysWeather[i-1].main.temp_min ? minTemp : daysWeather[i-1].main.temp_min  
             }
         }
+        else if(daysWeather[i].dt_txt[8]+daysWeather[i].dt_txt[9] !== daysWeather[i-1].dt_txt[8]+daysWeather[i-1].dt_txt[9] && i === daysWeather.length-1){
+            day = daysWeather[i-1].dt_txt[8]+daysWeather[i-1].dt_txt[9]
+            temps.push({maxTemp,minTemp,day})
+            day  = daysWeather[i].dt_txt[8]+daysWeather[i].dt_txt[9]
+            maxTemp=daysWeather[i].main.temp_max
+            minTemp=daysWeather[i].main.temp_min
+            temps.push({maxTemp,minTemp,day})
+        }
         else if(daysWeather[i].dt_txt[8]+daysWeather[i].dt_txt[9] !== daysWeather[i-1].dt_txt[8]+daysWeather[i-1].dt_txt[9]){
             day = daysWeather[i-1].dt_txt[8]+daysWeather[i-1].dt_txt[9]
             temps.push({maxTemp,minTemp,day})
