@@ -9,7 +9,7 @@ import getWeatherIcon from "../CustomFunctions/getWeatherIcon"
 function DetailedSmallCart(props){
 
     function handleClick(){
-        props.getCurrentWeatherOfDay(props.weatherData,Number(props.day),getMonthName(props.monthNumber))
+        props.getCurrentWeatherOfDay(props.weatherData,Number(props.day),getMonthName(props.monthNumber)) 
     }
 
     return(
