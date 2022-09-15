@@ -2,6 +2,6 @@ import React from "react";
 
 
 export default function OptionCity(props){
-    return (<option>{props.city}</option>)
+    return (<option className="sidebar-select">{props.city}</option>)
 }
 
