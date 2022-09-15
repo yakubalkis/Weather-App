@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { getCurrentWeatherOfDay,showPopup } from "../../redux/actions"
 import getDaysNames from "../CustomFunctions/getDaysNames"
-import getPopupData from "../CustomFunctions/getPopupData"
+import getMonthName from "../CustomFunctions/getMonthName"
 import getWeatherIcon from "../CustomFunctions/getWeatherIcon"
 
 
@@ -9,7 +9,7 @@ import getWeatherIcon from "../CustomFunctions/getWeatherIcon"
 function DetailedSmallCart(props){
 
     function handleClick(){
-        props.getCurrentWeatherOfDay(getPopupData(props.weeklyWeatherForecast,Number(props.day)))
+        props.getCurrentWeatherOfDay(props.weatherData,Number(props.day),getMonthName(props.monthNumber))
     }
 
     return(
