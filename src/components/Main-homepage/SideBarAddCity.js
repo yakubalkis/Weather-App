@@ -74,13 +74,13 @@ function SideBar(props){
                 </div>
                 <div className="sidebar-selects" >
                 <p>Country</p>
-                    {props.isShowSidebarAddCity && <select onBlur={event => event.preventDefault()} onClick={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
+                    {props.isShowSidebarAddCity && <select onChange={(e) => {handleSelectCountry(e)}}  className={`sidebar-select ${theme}-mode`} >
                         <option value='no select' >Select a country</option>
                         {optionsCountries}
                         
                     </select>}
                     <p className="select-city">City</p>
-                    {props.isShowSidebarAddCity && <select onBlur={event => event.preventDefault()} onClick={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
+                    {props.isShowSidebarAddCity && <select onChange={(e) => {handleSelectCity(e)}} className={`sidebar-select ${theme}-mode`} disabled={isDisableSelectCountry} >
                         <option value='no select' >Select a city</option>
                         {optionsCities}
                     </select>}
