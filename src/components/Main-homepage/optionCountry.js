@@ -1,4 +1,4 @@
 import React from "react"
 export default function OptionCountry(props){
-    return <option className="sidebar-select" >{props.country}</option>
+    return <option value={props.country} >{props.country}</option>
 }
