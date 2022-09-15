@@ -5,7 +5,6 @@ import { getCurrentWeatherOfDay, showPopup } from '../../redux/actions'
 import CartMenu from './CartMenu'
 import getDayData from '../CustomFunctions/getDayData'
 import getWeatherIcon from '../CustomFunctions/getWeatherIcon'
-import getPopupData from '../CustomFunctions/getPopupData'
 import getDaysNames from  '../CustomFunctions/getDaysNames'
 
 
@@ -27,8 +26,9 @@ function Cart(props){
     }
 
     function handleClick(){
-        props.getCurrentWeatherOfDay(getPopupData(props.weeklyWeatherForecast,getDayData()[0]))
+        props.getCurrentWeatherOfDay(props.allWeatherForecasts[props.index],getDayData()[0],getDayData()[3])
     }
+
 
     return(
         <div className={"cart"} style={styleCursor}  onClick={() => {if(!isHomePage && !props.isShowPopup){handleClick();props.showPopup()}}}>
@@ -59,7 +59,8 @@ const mapStateToProps = state => {
     return {
         isToggle:state.isToggle,
         weeklyWeatherForecast:state.weeklyWeatherForecast,
-        isShowPopup:state.isShowPopup
+        isShowPopup:state.isShowPopup,
+        allWeatherForecasts:state.allWeatherForecasts
     }
 }
 export default connect(mapStateToProps,{getCurrentWeatherOfDay, showPopup})(Cart)
