@@ -7,7 +7,7 @@ import { connect } from "react-redux"
 import getMaxMinTemp from "../CustomFunctions/getMaxMinTemp"
 import getCurrentDescription from "../CustomFunctions/getCurrentDescription"
 import FirstWeatherCart from "./firstWeatherCart"
-import DetailedSmallCart from "./detailedSmallCart"
+import DetailedSmallCart from './DetailedSmallCart'
 
 
 SwiperCore.use([Navigation, Pagination])
