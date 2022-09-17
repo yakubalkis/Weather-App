@@ -6,13 +6,13 @@ This project has been made by using React, pure CSS, HTML and Redux. It presents
 • By default, gives the current weather forecast of Berlin. </br>
 • When user wants to add city, the 'save' button will not be active until user choose the city and country in popup. </br>
 • When user clicks menu icon on cart, will see two options 'view weather' and 'remove city'. When 'view  weather' option is clicked, page will be redirected to another page that includes weather forecasts for other days about the city. When 'remove' city is  clicked, confirmation popup will be showed and the city will be removed.  </br>
-• When the user clicks on the cards on the redirected page, the card with the current weather information for that day is displayed. </br>
+• When user clicks on the cards on the redirected page, the card with the current weather information for that day is displayed. </br>
 • Dark-Light Mode </br>
 • Responsive Design </br>
 ## How Is It Working ? 
 First, I take latitude and longitude of selected city by using <b>Geocoding API</b>. Then, I take the current weather forecast data from <b>OpenWeather API</b> by using these latitude and longitude of city. I display this data on Cart component. </br>
 Second, when user clicks 'view weather' option on Cart component, I take the ID of city and take the Data containing the weather information of next days of city at 3 hour intervals from <b>OpenWeather API</b> by using that ID of city. </br>
-Finally, I filter the data to get max,min temps of days by using custom function <b>getMaxMinTemp</b>. After that, I display it on small carts. In addition, I take popup data by using another custom function <b>getCurrentDescription</b> and display it on Popup component when user clicks cart at redirected page. Beside all these, I use another custom functions for basic operations. </br>
+Finally, I filter the data to get max,min temps of days by using custom function <b>getMaxMinTemp</b>. Then, I display it on small carts. In addition, I take popup data by using another custom function <b>getCurrentDescription</b> and display it on Popup component when user clicks cart at redirected page. After that, I take weather icons by using custom function <b>getWeatherIcon</b>, it returns icons based on weather definition. Beside all these, I use another custom functions for basic operations. </br>
 
 ##  Used
 • Redux </br>
